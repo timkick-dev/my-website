@@ -2,11 +2,12 @@
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NEO-AI</title>
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
+
 <body>
   <div id="bg-anim"></div>
 
@@ -14,7 +15,7 @@
     <div class="logo">
       <img src="Logo.svg" alt="NEO-AI" />
       <div class="brand">
-        <div class="name">NEO‑AI</div>
+        <div class="name">NEO-AI</div>
         <div class="sub">powered by KickIT Consulting</div>
       </div>
     </div>
@@ -27,72 +28,61 @@
   </header>
 
   <main class="container">
+
+    <!-- HERO -->
     <section class="hero" id="home">
       <h1>NEO-AI: Wertschöpfungsorientierte KI-Toolchain für das produzierende Gewerbe</h1>
-      <p class="lead">Wir wählen die richtigen KI‑Tools, implementieren Ihre Tool‑Chain und betreiben die gesamte Infrastruktur.</p>
+      <p class="lead">Wir wählen die richtigen KI-Tools, implementieren Ihre Tool-Chain und betreiben die gesamte Infrastruktur.</p>
       <a class="cta" href="#contact">Beratung anfragen</a>
     </section>
 
+    <!-- CHALLENGES -->
     <section id="challenges" class="card">
       <h2>Herausforderungen im produzierenden Gewerbe</h2>
-      <p>Viele Unternehmen stehen aktuell vor ähnlichen Problemen, die ihre Wettbewerbsfähigkeit einschränken:</p>
       <ul class="list">
-        <li><strong>Daten‑Silos:</strong> Schwieriger Zugriff auf konsistente, qualitätsgesicherte Daten.</li>
+        <li><strong>Daten-Silos:</strong> Schwieriger Zugriff auf konsistente, qualitätsgesicherte Daten.</li>
         <li><strong>Qualitätskontrolle:</strong> Hoher Aufwand für Inspektion und späte Fehlererkennung.</li>
-        <li><strong>Wartung & Ausfallzeiten:</strong> Unvorhergesehene Maschinenstillstände führen zu Produktionsverlust.</li>
-        <li><strong>Prozessineffizienzen:</strong> Suboptimale Abläufe ohne automatisierte Verbesserungsschleifen.</li>
-        <li><strong>Kompetenzlücken:</strong> Mangel an KI‑Know‑how zur Auswahl und Integration passender Tools.</li>
+        <li><strong>Wartung & Ausfallzeiten:</strong> Unvorhergesehene Maschinenstillstände.</li>
+        <li><strong>Prozessineffizienzen:</strong> Suboptimale Abläufe ohne automatisierte Feedback-Loops.</li>
+        <li><strong>Kompetenzlücken:</strong> Fehlendes KI-Know-how für Tool-Auswahl & Integration.</li>
       </ul>
     </section>
 
+    <!-- INTEGRATION -->
     <section id="integration" class="card">
-      <h2>Integration von KI‑Tools entlang der Wertschöpfungskette</h2>
-      <body>
-        <h2>AI</h2>
-          <img src="test.png" alt="AI-Picture" width="300"/> 
-      </body>body>
-      <div class="grid">
-        <div class="item">
-          <h3>Forschung & Entwicklung</h3>
-          <p>Generative Modelle unterstützen Rapid Prototyping, Simulationen und Materialforschung.</p>
-        </div>
-        <div class="item">
-          <h3>Beschaffung</h3>
-          <p>Demand Forecasting & intelligente Lieferantenbewertung reduzieren Engpässe.</p>
-        </div>
-        <div class="item">
-          <h3>Produktion</h3>
-          <p>Computer Vision für Qualitätsprüfung, Anomalieerkennung für Prozessstabilität.</p>
-        </div>
-        <div class="item">
-          <h3>Instandhaltung</h3>
-          <p>Predictive Maintenance über Sensordaten und Zeitreihen‑Modelle.</p>
-        </div>
-        <div class="item">
-          <h3>Logistik & Distribution</h3>
-          <p>Optimierung von Routen, Lagerbeständen und Verpackungsprozessen.</p>
-        </div>
-        <div class="item">
-          <h3>Sales & After‑Sales</h3>
-          <p>Personalisierte Kundenkommunikation und intelligente Servicetools.</p>
-        </div>
+      <h2>Integration von KI-Tools entlang der Wertschöpfungskette</h2>
+
+      <div class="image-block">
+        <img src="test.png" alt="AI-Overview" />
       </div>
 
-      <p class="note">Wir orchestrieren die Tool‑Chain: Datenerfassung → Datenplattform → Modelle → Deployment → Monitoring.</p>
+      <div class="grid">
+        <div class="item"><h3>Forschung & Entwicklung</h3><p>Generative Modelle für Prototyping & Simulationen.</p></div>
+        <div class="item"><h3>Beschaffung</h3><p>Demand Forecasting & intelligente Lieferantenbewertung.</p></div>
+        <div class="item"><h3>Produktion</h3><p>Computer Vision & Anomalie-Detection.</p></div>
+        <div class="item"><h3>Instandhaltung</h3><p>Predictive Maintenance über Sensordaten.</p></div>
+        <div class="item"><h3>Logistik</h3><p>Optimierung von Routen, Lagerbeständen & Verpackung.</p></div>
+        <div class="item"><h3>After-Sales</h3><p>Personalisierte Kommunikation & Service-Automatisierung.</p></div>
+      </div>
+
+      <p class="note">Wir orchestrieren die gesamte Tool-Chain: Datenerfassung → Plattform → Modelle → Deployment → Monitoring.</p>
     </section>
 
+    <!-- USP -->
     <section id="usp" class="card">
       <h2>Unser USP</h2>
       <ul class="usp-list">
-        <li><strong>Passende Tool‑Auswahl:</strong> Wir evaluieren Tools nach Business‑Impact, Integrationsaufwand und Total Cost of Ownership.</li>
-        <li><strong>Implementierung der Tool‑Chain:</strong> Von Datenpipeline bis zu CI/CD für Modelle — aus einer Hand.</li>
-        <li><strong>Betrieb & Skalierung:</strong> Managed Infrastructure, Monitoring und Sicherheitsstandards für den Dauerbetrieb.</li>
+        <li><strong>Passende Tool-Auswahl:</strong> Evaluierung nach Business-Impact & TCO.</li>
+        <li><strong>Implementierung der Tool-Chain:</strong> Datenpipeline → Modelle → CI/CD.</li>
+        <li><strong>Betrieb & Skalierung:</strong> Managed Infrastructure & Security.</li>
       </ul>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="card contact">
       <h2>Kontakt</h2>
       <p>Interesse an einer unverbindlichen Erstberatung? Schreiben Sie uns:</p>
+
       <form onsubmit="handleContact(event)">
         <label>Firma <input type="text" name="company" required></label>
         <label>Name <input type="text" name="name" required></label>
@@ -100,12 +90,14 @@
         <label>Nachricht <textarea name="message" rows="4" required></textarea></label>
         <button type="submit" class="cta">Anfrage senden</button>
       </form>
+
       <p class="foot">Alternativ: info@kickit-consulting.example</p>
     </section>
+
   </main>
 
   <footer class="footer">
-    <p>© 2025 NEO‑AI · KickIT Consulting — Beratung zur wertschöpfungsorientierten Nutzung von KI‑Tools</p>
+    <p>© 2025 NEO-AI · KickIT Consulting — Wertschöpfungsorientierte KI-Beratung</p>
   </footer>
 
 </body>
