@@ -1,4 +1,6 @@
-/* ---------- ROOT THEME ---------- */
+/* -----------------------------------------------------
+   ROOT THEME
+----------------------------------------------------- */
 :root {
   --bg: #0b0f14;
   --card: #0f1720;
@@ -22,7 +24,9 @@ body {
   overflow-y: auto;
 }
 
-/* ---------- BACKGROUND ANIMATION ---------- */
+/* -----------------------------------------------------
+   BACKGROUND ANIMATION
+----------------------------------------------------- */
 #bg-anim {
   position: fixed;
   inset: 0;
@@ -42,7 +46,9 @@ body {
   100% { transform: translateY(0) rotate(0); }
 }
 
-/* ---------- NAVIGATION ---------- */
+/* -----------------------------------------------------
+   NAVIGATION
+----------------------------------------------------- */
 .nav {
   position: sticky;
   top: 0;
@@ -59,7 +65,10 @@ body {
 .logo { display: flex; align-items: center; gap: 12px; }
 .logo img { width: 48px; height: 48px; }
 
-.brand .sub { font-size: 12px; color: var(--muted); }
+.brand .sub {
+  font-size: 12px;
+  color: var(--muted);
+}
 
 .nav nav a {
   color: var(--muted);
@@ -69,16 +78,20 @@ body {
 }
 .nav nav a:hover { color: var(--accent); }
 
-/* ---------- LAYOUT ---------- */
+/* -----------------------------------------------------
+   LAYOUT WRAPPER
+----------------------------------------------------- */
 .container {
   max-width: 1100px;
   margin: 36px auto;
   padding: 0 20px;
-  position: relative;
   z-index: 2;
+  position: relative;
 }
 
-/* ---------- HERO ---------- */
+/* -----------------------------------------------------
+   HERO
+----------------------------------------------------- */
 .hero {
   padding: 40px;
   border-radius: 12px;
@@ -111,7 +124,9 @@ body {
   box-shadow: 0 6px 18px rgba(110,240,255,0.08);
 }
 
-/* ---------- CARD SECTIONS ---------- */
+/* -----------------------------------------------------
+   CARD SECTIONS
+----------------------------------------------------- */
 .card {
   margin-top: 26px;
   padding: 22px;
@@ -120,7 +135,6 @@ body {
   background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));
 }
 
-/* animated underline for h2 */
 .card h2 {
   position: relative;
   display: inline-block;
@@ -143,6 +157,10 @@ body {
   100% { transform: scaleX(0.85); }
 }
 
+/* -----------------------------------------------------
+   AI ARC GLOW (VARIANTE C)
+   für test.png im Hintergrund des Integration-Blocks
+----------------------------------------------------- */
 #integration {
   position: relative;
   overflow: hidden;
@@ -156,7 +174,10 @@ body {
   opacity: 0.1;
   filter: blur(25px) saturate(180%);
   z-index: -1;
-  mask-image: radial-gradient(circle at center,
+
+  /* Arc Glow Mask → Bild nur in Randbereichen */
+  mask-image: radial-gradient(
+      circle at center,
       transparent 0%,
       transparent 40%,
       black 70%,
@@ -164,5 +185,80 @@ body {
   );
 }
 
+/* -----------------------------------------------------
+   LISTS
+----------------------------------------------------- */
+.list li,
+.usp-list li {
+  color: var(--muted);
+  margin: 8px 0;
 }
-/
+
+.usp-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* -----------------------------------------------------
+   GRID
+----------------------------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.item {
+  padding: 12px;
+  background: var(--glass);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+/* -----------------------------------------------------
+   CONTACT
+----------------------------------------------------- */
+.contact form {
+  display: grid;
+  gap: 10px;
+}
+.contact label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: var(--muted);
+}
+.contact input,
+.contact textarea {
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: inherit;
+}
+.contact .cta {
+  width: 100%;
+  text-align: center;
+}
+
+/* -----------------------------------------------------
+   FOOTER
+----------------------------------------------------- */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 30px 20px;
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.02);
+  font-size: 14px;
+}
+
+/* -----------------------------------------------------
+   RESPONSIVE
+----------------------------------------------------- */
+@media (max-width: 700px) {
+  .nav nav { display: none; }
+  .lead { max-width: 100%; }
+}
