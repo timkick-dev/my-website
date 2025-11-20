@@ -100,6 +100,15 @@ body{
   box-shadow:0 6px 18px rgba(110,240,255,0.08);
 }
 
+#integration img {
+  width: 100%;
+  max-width: 600px;   /* gleiche Breite wie deine Cards */
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 8px; /* optional, passt zu deinem Card-Look */
+}
+
 /* cards */
 .card{
   margin-top:26px;
