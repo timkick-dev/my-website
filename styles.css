@@ -117,11 +117,19 @@ html, body {
 #integration::before {
   content: "";
   position: absolute;
-  inset: -25%;
-  background: url("/test.png") center/contain no-repeat;
-  opacity: 0.12;
-  filter: blur(40px) saturate(180%);
+  inset: 0;
+
+  /* test.png wird nun vollständig sichtbar */
+  background: url("/test.png") center/cover no-repeat;
+
+  opacity: 0.35; /* gut sichtbar, ohne zu dominant zu sein */
+
+  /* Blur und Maskierung ENTFERNT */
+  filter: none;
+
   z-index: -1;
+}
+
 
   /* funktioniert nun überall */
   -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,0) 20%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 80%);
