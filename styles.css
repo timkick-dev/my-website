@@ -118,17 +118,11 @@ html, body {
   content: "";
   position: absolute;
   inset: 0;
-
-  /* test.png wird nun vollständig sichtbar */
   background: url("/test.png") center/cover no-repeat;
-
-  opacity: 0.35; /* gut sichtbar, ohne zu dominant zu sein */
-
-  /* Blur und Maskierung ENTFERNT */
-  filter: none;
-
+  opacity: 0.35;
   z-index: -1;
 }
+
 
 
   /* funktioniert nun überall */
@@ -165,4 +159,45 @@ html, body {
 /* ---------- Mobile ---------- */
 @media (max-width: 700px) {
   .nav nav { display: none; }
+}
+/* ---------- Animated Yellow Hero Headline ---------- */
+.hero h1 {
+  text-align: center;
+  color: #ffe066;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+
+  text-shadow:
+    0 0 10px rgba(255, 224, 102, 0.9),
+    0 0 25px rgba(255, 224, 102, 0.5);
+
+  animation: neoGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes neoGlow {
+  0% {
+    text-shadow:
+      0 0 6px rgba(255, 224, 102, 0.6),
+      0 0 14px rgba(255, 224, 102, 0.35),
+      0 0 22px rgba(255, 224, 102, 0.18);
+  }
+  50% {
+    text-shadow:
+      0 0 14px rgba(255, 224, 102, 1),
+      0 0 30px rgba(255, 224, 102, 0.7),
+      0 0 40px rgba(255, 224, 102, 0.45),
+      0 0 55px rgba(255, 224, 102, 0.3);
+  }
+  100% {
+    text-shadow:
+      0 0 6px rgba(255, 224, 102, 0.6),
+      0 0 14px rgba(255, 224, 102, 0.35),
+      0 0 22px rgba(255, 224, 102, 0.18);
+  }
+}
+
+/* lead text zentrieren */
+.hero .lead {
+  text-align: center;
+  margin: 0 auto;
 }
