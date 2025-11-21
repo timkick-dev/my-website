@@ -162,17 +162,105 @@
         <a class="cta" href="#contact">Beratung anfragen</a>
       </section>
 
-      <section id="challenges">
-        <h2>Herausforderungen im produzierenden Gewerbe</h2>
-        <div class="challenges-grid">
-          <div class="challenge-card"><div class="icon">⚠️</div><h3>Insellösungen & Silo-Denken</h3><p>Viele KI-Tools funktionieren isoliert – keine durchgängige Tool-Chain von der Datenerfassung bis zum Monitoring.</p></div>
-          <div class="challenge-card"><div class="icon">💸</div><h3>Hohe Kosten & lange ROI-Zeit</h3><p>Lizenzkosten, Custom-Entwicklung und teure Cloud-Ressourcen lassen Projekte schnell sechsstellig werden.</p></div>
-          <div class="challenge-card"><div class="icon">🔧</div><h3>Fehlende Integration ins Shopfloor</h3><p>Die meisten Tools sind nicht für raue Produktionsumgebungen (PLC, SCADA, MES) ausgelegt.</p></div>
-          <div class="challenge-card"><div class="icon">🧠</div><h3>Mangel an KI-Kompetenz intern</h3><p>Data-Science-Teams sind teuer und rar – gleichzeitig wollen Werksleiter keine Black-Box-Lösungen.</p></div>
-          <div class="challenge-card"><div class="icon">⏱️</div><h3>Lange Time-to-Value</h3><p>Von der Idee bis zum ersten produktiven Modell vergehen oft 12–24 Monate.</p></div>
-          <div class="challenge-card"><div class="icon">🔒</div><h3>Datenschutz & IT-Security</h3><p>Sensible Maschinendaten in Public Clouds? Für viele Produktionsleiter ein No-Go.</p></div>
-        </div>
-      </section>
+<section id="challenges">
+  <h2>Herausforderungen im produzierenden Gewerbe 2025</h2>
+
+  <div class="challenges-grid">
+    <div class="challenge-card">
+      <div class="icon">⚠️</div>
+      <h3>Insellösungen & Silo-Denken</h3>
+      <p>Viele KI-Tools funktionieren isoliert – keine durchgängige Toolchain von der Datenerfassung bis zum Monitoring.</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="icon">💸</div>
+      <h3>Explodierende Kosten & lange ROI-Zeit</h3>
+      <p>Lizenzkosten, Custom-Entwicklung und Cloud-Ressourcen lassen Projekte schnell siebenstellig werden – oft ohne sichtbaren Nutzen im ersten Jahr.</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="icon">🔧</div>
+      <h3>Fehlende Shopfloor-Integration</h3>
+      <p>Die meisten KI-Lösungen sind nicht für raue Produktionsumgebungen (PLC, SCADA, MES, Edge) ausgelegt und scheitern bereits an der Anbindung.</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="icon">🧠</div>
+      <h3>Mangel an KI-Kompetenz intern</h3>
+      <p>Data Scientists sind teuer, rar und oft nach 6 Monaten wieder weg – Werksleiter wollen keine Black-Box, sondern verständliche Ergebnisse.</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="icon">⏱️</div>
+      <h3>Endlos lange Time-to-Value</h3>
+      <p>Von der Idee bis zum ersten produktiven Modell vergehen häufig 18–36 Monate – viel zu langsam für den aktuellen Wettbewerbsdruck.</p>
+    </div>
+
+    <div class="challenge-card">
+      <div class="icon">🔒</div>
+      <h3>Datenschutz & IT-Security-Bedenken</h3>
+      <p>Sensible Maschinendaten in Public Clouds? Für die meisten Produktions- und IT-Leiter immer noch ein absolutes No-Go.</p>
+    </div>
+
+    <!-- NEU #7 -->
+    <div class="challenge-card">
+      <div class="icon">🌍</div>
+      <h3>Lieferketten- & Geopolitische Risiken</h3>
+      <p>Aktuelle Krisen zeigen: Unternehmen brauchen Echtzeit-Transparenz und KI-gestützte Resilienz über die gesamte Supply Chain.</p>
+    </div>
+
+    <!-- NEU #8 -->
+    <div class="challenge-card">
+      <div class="icon">⚡</div>
+      <h3>Energiekrise & Nachhaltigkeitsdruck</h3>
+      <p>Steigende Energiepreise und neue ESG-Vorgaben zwingen Werke, Produktion und Instandhaltung radikal energieeffizienter zu machen – mit KI oder gar nicht.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+    max-width: 1600px;
+    margin: 80px auto;
+    padding: 0 20px;
+  }
+
+  .challenge-card {
+    background: rgba(255, 0, 50, 0.05);
+    border: 1px solid rgba(255, 0, 50, 0.2);
+    border-radius: 24px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .challenge-card:hover {
+    transform: translateY(-15px);
+    border-color: #ff3366;
+    box-shadow: 0 20px 40px rgba(255, 0, 50, 0.2);
+  }
+
+  .challenge-card .icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+
+  .challenge-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    color: #ff3366;
+    margin: 15px 0;
+  }
+
+  @media (max-width: 768px) {
+    .challenges-grid { gap: 30px; }
+    .challenge-card h3 { font-size: 1.4rem; }
+  }
+</style>
 
 <section id="integration">
         <h1>Viele Unternehmen scheitern an der Komplexität einzelner KI-Tools, fehlender Integration und hohen Betriebskosten.</h1>
