@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>NEO-AI</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <!-- Fonts für das futuristische Feeling -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <!-- ==================== 1. NEO-AI INTRO SEQUENCE (mit Logo + 5 Phases) ==================== -->
+  <!-- ====================== NEO-AI INTRO SEQUENCE (Logo + 5 Phases) ====================== -->
   <div class="neo-intro-overlay">
     <div class="neo-logo-center">
-      <img src="neo-ai-logo.png" alt="NEO-AI Logo"> <!-- Pfad ggf. anpassen -->
+      <img src="Logo.svg" alt="NEO-AI Logo"> <!-- Logo hier hochladen (PNG/SVG) -->
     </div>
-
     <div class="neo-steps">
       <div class="step">Phase 01 — Deep Process Discovery</div>
       <div class="step">Phase 02 — Intelligent Opportunity Mining</div>
@@ -27,7 +27,6 @@
   </div>
 
   <style>
-    /* NEO-AI Intro Overlay */
     .neo-intro-overlay {
       position: fixed;
       inset: 0;
@@ -41,14 +40,13 @@
       color: #00ffff;
       pointer-events: none;
     }
-
     .neo-logo-center img {
       height: 180px;
+      max-width: 90vw;
       filter: drop-shadow(0 0 50px #00ffff);
       opacity: 0;
       animation: logoFadeIn 1.4s ease-out 0.6s forwards, logoPulse 4s infinite alternate 2s;
     }
-
     .neo-steps .step {
       opacity: 0;
       font-size: 2.8vw;
@@ -59,13 +57,11 @@
       transform: translateY(60px);
       transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
     }
-
     .neo-steps .step.visible {
       opacity: 1;
       transform: translateY(0);
       text-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff;
     }
-
     .neo-steps .step::before {
       content: '';
       display: inline-block;
@@ -78,19 +74,10 @@
       opacity: 0;
       animation: pulse 2s infinite;
     }
-
     .neo-steps .step.visible::before { opacity: 1; }
-
     @keyframes logoFadeIn { to { opacity: 1; } }
-    @keyframes logoPulse { 
-      0% { filter: drop-shadow(0 0 50px #00ffff); }
-      100% { filter: drop-shadow(0 0 90px #00ffff); }
-    }
-    @keyframes pulse { 
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.6); }
-    }
-
+    @keyframes logoPulse { 0% { filter: drop-shadow(0 0 50px #00ffff); } 100% { filter: drop-shadow(0 0 90px #00ffff); } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.6); } }
     @media (max-width: 768px) {
       .neo-steps .step { font-size: 5.5vw; letter-spacing: 3px; }
       .neo-logo-center img { height: 120px; }
@@ -102,50 +89,34 @@
       const overlay = document.querySelector('.neo-intro-overlay');
       const steps = document.querySelectorAll('.neo-steps .step');
 
-      // Steps nacheinander einblenden
       steps.forEach((step, i) => {
         setTimeout(() => step.classList.add('visible'), 1600 + i * 750);
       });
 
-      // Nach allen Steps + Pause → komplett ausblenden und Rest der Seite freigeben
       setTimeout(() => {
         overlay.style.transition = 'opacity 1.6s ease-out';
         overlay.style.opacity = '0';
         setTimeout(() => {
-          overlay.remove(); // komplett aus dem DOM entfernen → kein Performance-Overhead mehr
-          document.body.style.overflow = 'auto'; // Falls du vorher overflow hidden hattest
-          // Jetzt starten die restlichen Animationen (Terminal etc.)
-          startMainAnimations();
+          overlay.remove();
+          startMainContent(); // Jetzt geht’s weiter mit Terminal & Seite
         }, 1700);
       }, 1600 + steps.length * 750 + 1400);
     });
 
-    function startMainAnimations() {
-      // Dein bestehender Code für Terminal, Neural BG, etc. wird jetzt erst gestartet
-      const terminal = document.getElementById('terminal-intro');
-      const hero = document.querySelector('.hero');
-      if (hero) hero.style.opacity = '1';
-
-      if (terminal) {
-        terminal.style.opacity = '1';
-        setTimeout(() => {
-          terminal.style.opacity = '0';
-          setTimeout(() => { terminal.style.display = 'none'; }, 1000);
-        }, 5000);
-      }
-
-      // Hier kannst du alle anderen GSAP-Animationen etc. starten – alles läuft jetzt sauber nacheinander
+    function startMainContent() {
+      document.getElementById('terminal-intro').style.opacity = '1';
+      document.querySelector('.hero').style.opacity = '1';
     }
   </script>
-  <!-- ==================== ENDE NEO-AI INTRO ==================== -->
+  <!-- ====================== ENDE INTRO ====================== -->
 
   <!-- Hintergründe -->
   <div id="morphing-blob"></div>
   <canvas id="neural-bg"></canvas>
   <div id="bg-anim"></div>
 
-  <!-- Terminal Intro (erscheint erst NACH dem NEO-AI Intro) -->
-  <div id="terminal-intro" style="opacity:0; transition:opacity 1s;">
+  <!-- Terminal Intro (erscheint erst nach dem NEO-Intro) -->
+  <div id="terminal-intro" style="opacity:0; transition:opacity 1.5s;">
     <div class="terminal">
       <pre>
   NEO-AI OS v2.7 booting...
@@ -160,7 +131,6 @@
     </div>
   </div>
 
-  <!-- Der gesamte Rest deiner Seite (Header, Hero, Sections, Footer…) bleibt 100 % unverändert -->
   <header class="nav">
     <div class="logo">
       <img src="Logo.svg" alt="NEO-AI">
@@ -194,20 +164,31 @@
       <a class="cta" href="#contact">Beratung anfragen</a>
     </section>
 
-    <!-- Alle deine weiteren Sections (#challenges, #integration, #usp, Kontakt etc.) einfach drunter lassen – genau wie vorher -->
-    <!-- ... (dein kompletter restlicher Content) ... -->
-
+    <!-- === Alle deine ursprünglichen Sections (unverändert) === -->
+    <section id="challenges"> <!-- ... dein ganzer Challenges-Block ... --> </section>
+    <section id="integration"> <!-- ... dein ganzer Integration-Block ... --> </section>
+    <section id="usp"> <!-- ... USP ... --> </section>
+    <section class="process-section"> <!-- ... Process Flow ... --> </section>
+    <section class="contact-section" id="contact"> <!-- ... Kontaktformular ... --> </section>
+    <!-- (Ich lasse sie hier der Übersicht halber aus – du hast sie ja bereits im Code oben) -->
   </main>
 
   <footer class="footer">
     <p>© 2025 NEO-AI · KickIT Consulting</p>
   </footer>
 
-  <!-- Dein kompletter bestehender JavaScript-Block (Morphing Blob, Neural Canvas, GSAP, Formular…) bleibt unverändert -->
+  <!-- ====================== Haupt-JavaScript (dein Original + kleine Anpassungen) ====================== -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Der gesamte alte Code bleibt – er wird jetzt erst in startMainAnimations() aufgerufen
-      // oder einfach hier stehen lassen, weil das NEO-Intro sich vorher selbst entfernt
+      const terminal = document.getElementById('terminal-intro');
+
+      // Terminal nach 5 Sekunden ausblenden
+      setTimeout(() => {
+        terminal.style.opacity = '0';
+        setTimeout(() => { terminal.style.display = 'none'; }, 1000);
+      }, 5500);
+
+      // Morphing Blob
       const blob = document.getElementById("morphing-blob");
       if (blob && window.gsap) {
         gsap.to(blob, { duration: 8 + Math.random()*4, repeat: -1, ease: "none", attr: { d: () => {
@@ -217,10 +198,63 @@
         }}});
       }
 
-      // Neural Canvas, GSAP ScrollTrigger, Formular etc. → alles bleibt exakt wie bei dir
-      // (Platzhalter – dein kompletter Script-Block einfach hier reinkopieren)
+      // Neural Background Canvas
+      const canvas = document.getElementById("neural-bg");
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        canvas.width = innerWidth; canvas.height = innerHeight;
+        const particles = []; const N = 80;
+        class P {
+          constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*3+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; }
+          update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width || this.x < 0) this.speedX *= -1; if (this.y > canvas.height || this.y < 0) this.speedY *= -1; }
+          draw() { ctx.fillStyle = "rgba(0,150,255,0.8)"; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
+        }
+        for(let i=0;i<N;i++) particles.push(new P());
+        const connect = () => {
+          for(let a=0;a<particles.length;a++)
+            for(let b=a;b<particles.length;b++) {
+              const d = Math.hypot(particles[a].x-particles[b].x, particles[a].y-particles[b].y);
+              if(d<120){
+                ctx.strokeStyle = `rgba(0,150,255,${1-d/120})`;
+                ctx.lineWidth = 0.5;
+                ctx.beginPath();
+                ctx.moveTo(particles[a].x,particles[a].y);
+                ctx.lineTo(particles[b].x,particles[b].y);
+                ctx.stroke();
+              }
+            }
+        };
+        const anim = () => {
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+          particles.forEach(p=>{p.update();p.draw();});
+          connect();
+          requestAnimationFrame(anim);
+        };
+        anim();
+        window.addEventListener("resize",()=>{canvas.width=innerWidth;canvas.height=innerHeight;});
+      }
+
+      // GSAP Scroll-Animationen
+      if (window.gsap) {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.to("header.nav", { y: 0, opacity: 1, duration: 1, delay: 1 });
+        document.querySelectorAll("section").forEach(s => gsap.from(s, { scrollTrigger: { trigger: s, start: "top 80%" }, y: 50, opacity: 0, duration: 1 }));
+      }
+
+      // Formular-Feedback
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          setTimeout(() => {
+            status.innerHTML = 'Vielen Dank! Wir melden uns innerhalb von 48 Stunden.';
+            status.className = 'success';
+            form.reset();
+          }, 800);
+        });
+      }
     });
   </script>
-
 </body>
 </html>
