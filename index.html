@@ -236,9 +236,13 @@ Tool-Chain orchestration active ✓
 
   <!-- Alle neuen Animationen & Effekte -->
   <script>
-    // 1. Terminal Intro → Hero Fade-In
-    const terminal = document.getElementById('terminal-intro');
-    const hero = document.querySelector('.hero');
+  // ====== SICHERE VERSION – läuft immer, auch wenn Teile fehlen ======
+  const terminal = document.getElementById('terminal-intro');
+  const hero = document.querySelector('.hero');
+
+  // Terminal Intro (nur ausführen, wenn wirklich vorhanden)
+  if (terminal && hero) {
+    hero.style.opacity = '0';
     setTimeout(() => {
       terminal.style.opacity = '0';
       setTimeout(() => {
@@ -246,20 +250,28 @@ Tool-Chain orchestration active ✓
         hero.style.opacity = '1';
       }, 800);
     }, 4800);
+  } else if (hero) {
+    hero.style.opacity = '1'; // falls kein Terminal → direkt Hero zeigen
+  }
 
-    // 2. Morphing Blob (folgt der Maus)
-    const blob = document.getElementById('morphing-blob');
+  // Morphing Blob
+  const blob = document.getElementById('morphing-blob');
+  if (blob) {
     document.addEventListener('mousemove', (e) => {
       blob.style.transform = `translate(${e.clientX / 25}px, ${e.clientY / 25}px)`;
     });
+  }
 
-    // 3. Neural Network Hintergrund
-    const canvas = document.getElementById('neural-bg');
+  // Neural Network Background (Performance-optimiert)
+  const canvas = document.getElementById('neural-bg');
+  if (canvas) {
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    const count = window.innerWidth <= 768 ? 40 : 90;
     const particles = [];
-    for(let i = 0; i < 90; i++) {
+    for(let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -268,14 +280,19 @@ Tool-Chain orchestration active ✓
         radius: Math.random() * 2 + 1
       });
     }
+
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => {
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
         ctx.fillStyle = 'rgba(110, 240, 255, 0.5)';
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
         particles.forEach(p2 => {
           const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
           if (dist < 130) {
@@ -291,17 +308,31 @@ Tool-Chain orchestration active ✓
       requestAnimationFrame(animate);
     }
     animate();
+
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
+  }
 
-    // Dein bestehender Process-Flow Scroll-Trigger
+  // Process-Flow Animation (GSAP)
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
     gsap.timeline({
-      scrollTrigger: { trigger: "#edgyFlow", start: "top 70%", toggleActions: "play none none reverse" }
+      scrollTrigger: {
+        trigger: "#edgyFlow",
+        start: "top 70%",
+        toggleActions: "play none none reverse"
+      }
     })
-    .to(".step-edgy", { opacity: 1, y: 0, duration: 1.1, stagger: 0.22, ease: "power3.out" });
-  </script>
+    .to(".step-edgy", {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      stagger: 0.22,
+      ease: "power3.out"
+    });
+  }
+</script>
 </body>
 </html>
