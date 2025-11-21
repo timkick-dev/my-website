@@ -187,31 +187,160 @@
         <p class="note">Wir orchestrieren die gesamte KI-Tool-Chain: Datenerfassung → Plattform → Modelle → Deployment → Monitoring.</p>
       </section>
 
-        <section id="usp">
-          <h2 class="usp-title">Warum NEO-AI die richtige Wahl ist</h2>
-          <div class="usp-grid">
-            <div class="usp-card">
-              <div class="usp-icon">🔓</div>
-              <h3>Hersteller-<br>unabhängig</h3>
-              <p>Wir binden die besten Tools ein – LangChain, CrewAI, OpenAI, Anthropic, Llama, Mistral … völlig frei wäast</p>
-            </div>
-            <div class="usp-card">
-              <div class="usp-icon">⚙️</div>
-              <h3>Vollständig<br>gemanagt</h3>
-              <p>Sie müssen keine Data Scientists einstellen. Wir übernehmen Modell-Training, Deployment und 24/7 Monitoring.</p>
-            </div>
-            <div class="usp-card">
-              <div class="usp-icon">🚀</div>
-              <h3>Unbegrenzt<br>skalierbar</h3>
-              <p>Von einem Pilot-Standort bis zu 200+ Werken weltweit – die gleiche Toolchain, gleiche Qualität, gleiche Kostenstruktur.</p>
-            </div>
-            <div class="usp-card">
-              <div class="usp-icon">💰</div>
-              <h3>Schneller ROI<br>garantiert</h3>
-              <p>Durchschnittlich 1,8 Mio € Einsparung pro Standort bereits im ersten Jahr – bei einem Automotive-Kunden sogar nach 4 Monaten.</p>
-            </div>
-          </div>
-        </section>
+<section id="usp">
+  <h2 class="usp-title">Warum NEO-AI die richtige Wahl ist</h2>
+  <div class="usp-grid">
+    <div class="usp-card">
+      <div class="usp-icon">🔓</div>
+      <h3>Hersteller-<br>unabhängig</h3>
+      <p>Wir binden die besten Tools ein – LangChain, CrewAI, OpenAI, Anthropic, Llama, Mistral … völlig frei wählbar.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">⚙️</div>
+      <h3>Vollständig<br>gemanagt</h3>
+      <p>Sie müssen keine Data Scientists einstellen. Wir übernehmen Modell-Training, Deployment und 24/7 Monitoring.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🚀</div>
+      <h3>Unbegrenzt<br>skalierbar</h3>
+      <p>Von einem Pilot-Standort bis zu 200+ Werken weltweit – die gleiche Toolchain, gleiche Qualität, gleiche Kostenstruktur.</p>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">💰</div>
+      <h3>Schneller ROI<br>garantiert</h3>
+      <p>Durchschnittlich 1,8 Mio € Einsparung pro Standort bereits im ersten Jahr – bei einem Automotive-Kunden sogar nach 4 Monaten.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #usp {
+    padding: 140px 20px 160px;
+    text-align: center;
+    background: linear-gradient(135deg, #0a1f3d 0%, #000 100%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .usp-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    margin-bottom: 100px;
+    background: linear-gradient(90deg, #00ffff, #0099ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+  }
+
+  .usp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    max-width: 1500px;
+    margin: 0 auto;
+    perspective: 1500px;
+  }
+
+  .usp-card {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 28px;
+    padding: 50px 25px;
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    transform: translateY(100px) scale(0.8) rotateX(20deg);
+  }
+
+  .usp-icon {
+    font-size: 5rem;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 0 30px #00ffff);
+  }
+
+  .usp-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #00ffff;
+    line-height: 1.2;
+  }
+
+  .usp-card p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+
+  /* Hover-Effekt */
+  .usp-card:hover {
+    border-color: #00ffff;
+    box-shadow: 0 30px 60px rgba(0, 255, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .usp-grid { gap: 40px; padding: 0 15px; }
+    .usp-card { padding: 40px 20px; }
+    .usp-card h3 { font-size: 1.7rem; }
+  }
+</style>
+
+<!-- GSAP Animation für USPs -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Titel einfliegen
+    gsap.to(".usp-title", {
+      scrollTrigger: {
+        trigger: "#usp",
+        start: "top 70%",
+        toggleActions: "play none none reverse"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+
+    // Karten nacheinander mit 3D-Stagger reinfliegen
+    gsap.to(".usp-card", {
+      scrollTrigger: {
+        trigger: ".usp-grid",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      },
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      duration: 1.2,
+      ease: "back.out(1.4)",
+      stagger: {
+        amount: 0.8,
+        from: "start"
+      }
+    });
+
+    // Leichter Parallax-Hover auf jeder Karte
+    document.querySelectorAll(".usp-card").forEach(card => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateY = (x - centerX) / 10;
+        const rotateX = -(y - centerY) / 10;
+
+        gsap.to(card, { rotateY, rotateX, transformPerspective: 1000, ease: "power2.out", duration: 0.6 });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, { rotateY: 0, rotateX: 0, ease: "power2.out", duration: 0.8 });
+      });
+    });
+  });
+</script>
 
         <style>
           #usp {
