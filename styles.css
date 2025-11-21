@@ -257,3 +257,24 @@ footer.footer {
   #morphing-blob { width: 700px; height: 700px; top: -250px; left: -250px; }
   .contact-wrapper { padding: 50px 30px; }
 }
+
+/* ===== ZENTRALE ÜBERSCHRIFTEN AUF ALLEN SECTIONS ===== */
+section h2 {
+  text-align: center;
+  font-size: clamp(2.4rem, 5.5vw, 3.2rem);
+  font-weight: 800;
+  margin: 0 auto 60px;
+  max-width: 90%;
+  background: linear-gradient(90deg, #c084fc, #7c3aed, #6ef0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+/* Optional: etwas mehr Abstand vor der Section */
+section {
+  padding: 100px 5% 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
