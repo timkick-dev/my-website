@@ -5,19 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>NEO-AI</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Fonts für das futuristische Feeling -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <!-- ====================== NEO-AI INTRO SEQUENCE (Logo + 5 Phases) ====================== -->
-  <div class="neo-intro-overlay">
-    <div class="neo-logo-center">
-      <img src="Logo.svg" alt="NEO-AI Logo"> <!-- Logo hier hochladen (PNG/SVG) -->
+  <!-- ====================== NEO-AI INTRO MIT Logo.svg ====================== -->
+  <div id="neo-intro">
+    <div class="logo-center">
+      <img src="Logo.svg" alt="NEO-AI Logo">
     </div>
-    <div class="neo-steps">
+    <div class="steps">
       <div class="step">Phase 01 — Deep Process Discovery</div>
       <div class="step">Phase 02 — Intelligent Opportunity Mining</div>
       <div class="step">Phase 03 — Autonomous Toolchain Orchestration</div>
@@ -27,10 +26,10 @@
   </div>
 
   <style>
-    .neo-intro-overlay {
+    #neo-intro {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, #0a1f3d 0%, #000 70%);
+      background: radial-gradient(circle at center, #0a1f3d 0%, #000 80%);
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -40,85 +39,84 @@
       color: #00ffff;
       pointer-events: none;
     }
-    .neo-logo-center img {
+    #neo-intro .logo-center img {
       height: 180px;
+      width: auto;
       max-width: 90vw;
-      filter: drop-shadow(0 0 50px #00ffff);
+      filter: drop-shadow(0 0 60px #00ffff);
       opacity: 0;
-      animation: logoFadeIn 1.4s ease-out 0.6s forwards, logoPulse 4s infinite alternate 2s;
+      animation: fadeIn 1.5s ease-out 0.5s forwards, pulse 4s infinite alternate 2s;
     }
-    .neo-steps .step {
+    #neo-intro .steps .step {
       opacity: 0;
       font-size: 2.8vw;
       font-weight: 300;
       letter-spacing: 5px;
       text-shadow: 0 0 30px #00ffff;
-      margin: 2.2vh 0;
-      transform: translateY(60px);
+      margin: 2.5vh 0;
+      transform: translateY(50px);
       transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .neo-steps .step.visible {
+    #neo-intro .steps .step.show {
       opacity: 1;
       transform: translateY(0);
       text-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff;
     }
-    .neo-steps .step::before {
-      content: '';
+    #neo-intro .step::before {
+      content: "";
       display: inline-block;
       width: 14px; height: 14px;
-      margin-right: 26px;
+      margin-right: 28px;
       border: 2px solid #00ffff;
       border-radius: 50%;
-      box-shadow: 0 0 25px #00ffff;
+      box-shadow: 0 0 30px #00ffff;
       vertical-align: middle;
       opacity: 0;
-      animation: pulse 2s infinite;
+      animation: dotPulse 2s infinite;
     }
-    .neo-steps .step.visible::before { opacity: 1; }
-    @keyframes logoFadeIn { to { opacity: 1; } }
-    @keyframes logoPulse { 0% { filter: drop-shadow(0 0 50px #00ffff); } 100% { filter: drop-shadow(0 0 90px #00ffff); } }
-    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.6); } }
+    #neo-intro .step.show::before { opacity: 1; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes pulse { 0% { filter: drop-shadow(0 0 60px #00ffff); } 100% { filter: drop-shadow(0 0 100px #00ffff); } }
+    @keyframes dotPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.6); } }
     @media (max-width: 768px) {
-      .neo-steps .step { font-size: 5.5vw; letter-spacing: 3px; }
-      .neo-logo-center img { height: 120px; }
+      #neo-intro .steps .step { font-size: 5.5vw; }
+      #neo-intro .logo-center img { height: 120px; }
     }
   </style>
 
   <script>
     window.addEventListener('load', () => {
-      const overlay = document.querySelector('.neo-intro-overlay');
-      const steps = document.querySelectorAll('.neo-steps .step');
+      const intro = document.getElementById('neo-intro');
+      const steps = document.querySelectorAll('#neo-intro .step');
 
       steps.forEach((step, i) => {
-        setTimeout(() => step.classList.add('visible'), 1600 + i * 750);
+        setTimeout(() => step.classList.add('show'), 1400 + i * 800);
       });
 
       setTimeout(() => {
-        overlay.style.transition = 'opacity 1.6s ease-out';
-        overlay.style.opacity = '0';
+        intro.style.transition = 'opacity 1.8s ease-out';
+        intro.style.opacity = '0';
         setTimeout(() => {
-          overlay.remove();
-          startMainContent(); // Jetzt geht’s weiter mit Terminal & Seite
-        }, 1700);
-      }, 1600 + steps.length * 750 + 1400);
+          intro.remove();
+          document.documentElement.style.overflow = 'auto';
+          document.getElementById('main-content').style.display = 'block';
+          document.getElementById('terminal-intro').style.opacity = '1';
+          document.querySelector('.hero').style.opacity = '1';
+        }, 1800);
+      }, 1400 + steps.length * 800 + 1600);
     });
-
-    function startMainContent() {
-      document.getElementById('terminal-intro').style.opacity = '1';
-      document.querySelector('.hero').style.opacity = '1';
-    }
   </script>
-  <!-- ====================== ENDE INTRO ====================== -->
 
-  <!-- Hintergründe -->
-  <div id="morphing-blob"></div>
-  <canvas id="neural-bg"></canvas>
-  <div id="bg-anim"></div>
+  <!-- ====================== GANZE SEITE (wird erst nach Intro sichtbar) ====================== -->
+  <div id="main-content" style="display:none;">
 
-  <!-- Terminal Intro (erscheint erst nach dem NEO-Intro) -->
-  <div id="terminal-intro" style="opacity:0; transition:opacity 1.5s;">
-    <div class="terminal">
-      <pre>
+    <div id="morphing-blob"></div>
+    <canvas id="neural-bg"></canvas>
+    <div id="bg-anim"></div>
+
+    <div id="terminal-intro" style="opacity:0; transition:opacity 1.5s;">
+      <div class="terminal">
+        <pre>
   NEO-AI OS v2.7 booting...
   Initializing MLOps kernel..............OK
   Scanning factory sensors (n=12.847)....98%
@@ -127,66 +125,115 @@
   Optimizing 63 active models............RUNNING
   Tool-Chain orchestration active ✓
 <span class="cursor">_</span>
-      </pre>
-    </div>
-  </div>
-
-  <header class="nav">
-    <div class="logo">
-      <img src="Logo.svg" alt="NEO-AI">
-      <div class="brand">
-        <div class="name">NEO-AI</div>
-        <div class="sub">powered by KickIT Consulting</div>
+        </pre>
       </div>
     </div>
-    <nav>
-      <a href="#challenges">Herausforderungen</a>
-      <a href="#integration">Integration</a>
-      <a href="#usp">USP</a>
-      <a href="#contact">Kontakt</a>
-    </nav>
-  </header>
 
-  <div class="news-ticker">
-    <div class="ticker-wrap">
-      <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
-      <span>Predictive Maintenance live bei Automotive-Kunde – Ausfallzeiten -94 %</span>
-      <span>KI-Toolchain-Orchestrierung jetzt mit voller LangChain & CrewAI Integration</span>
-      <span>ISO 42001 Zertifizierung erfolgreich abgeschlossen</span>
-      <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
+    <header class="nav">
+      <div class="logo">
+        <img src="Logo.svg" alt="NEO-AI">
+        <div class="brand">
+          <div class="name">NEO-AI</div>
+          <div class="sub">powered by KickIT Consulting</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#challenges">Herausforderungen</a>
+        <a href="#integration">Integration</a>
+        <a href="#usp">USP</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </header>
+
+    <div class="news-ticker">
+      <div class="ticker-wrap">
+        <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
+        <span>Predictive Maintenance live bei Automotive-Kunde – Ausfallzeiten -94 %</span>
+        <span>KI-Toolchain-Orchestrierung jetzt mit voller LangChain & CrewAI Integration</span>
+        <span>ISO 42001 Zertifizierung erfolgreich abgeschlossen</span>
+        <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
+      </div>
     </div>
+
+    <main class="container">
+      <section class="hero" id="home" style="opacity:0; transition:opacity 1.5s;">
+        <h1>NEO-AI: Wertschöpfungsorientierte KI-Toolchain für das produzierende Gewerbe</h1>
+        <p class="lead">Wir wählen die richtigen KI-Tools, implementieren Ihre Tool-Chain und betreiben die gesamte Infrastruktur.</p>
+        <a class="cta" href="#contact">Beratung anfragen</a>
+      </section>
+
+      <section id="challenges">
+        <h2>Herausforderungen im produzierenden Gewerbe</h2>
+        <div class="challenges-grid">
+          <div class="challenge-card"><div class="icon">⚠️</div><h3>Insellösungen & Silo-Denken</h3><p>Viele KI-Tools funktionieren isoliert – keine durchgängige Tool-Chain von der Datenerfassung bis zum Monitoring.</p></div>
+          <div class="challenge-card"><div class="icon">💸</div><h3>Hohe Kosten & lange ROI-Zeit</h3><p>Lizenzkosten, Custom-Entwicklung und teure Cloud-Ressourcen lassen Projekte schnell sechsstellig werden.</p></div>
+          <div class="challenge-card"><div class="icon">🔧</div><h3>Fehlende Integration ins Shopfloor</h3><p>Die meisten Tools sind nicht für raue Produktionsumgebungen (PLC, SCADA, MES) ausgelegt.</p></div>
+          <div class="challenge-card"><div class="icon">🧠</div><h3>Mangel an KI-Kompetenz intern</h3><p>Data-Science-Teams sind teuer und rar – gleichzeitig wollen Werksleiter keine Black-Box-Lösungen.</p></div>
+          <div class="challenge-card"><div class="icon">⏱️</div><h3>Lange Time-to-Value</h3><p>Von der Idee bis zum ersten produktiven Modell vergehen oft 12–24 Monate.</p></div>
+          <div class="challenge-card"><div class="icon">🔒</div><h3>Datenschutz & IT-Security</h3><p>Sensible Maschinendaten in Public Clouds? Für viele Produktionsleiter ein No-Go.</p></div>
+        </div>
+      </section>
+
+      <section id="integration">
+        <h1>Viele Unternehmen scheitern an der Komplexität einzelner KI-Tools, fehlender Integration und hohen Betriebskosten.</h1>
+        <h2>Unsere Lösung: Vollständige Orchestrierung</h2>
+        <div class="usecase-grid">
+          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v2H3V3zm2 4h14v2H5V7zm-2 4h18v10H3V11zm2 2v6h14v-6H5z"/></svg></div><h3>Beschaffung</h3><p>Demand Forecasting & intelligente Lieferantenbewertung.</p><div class="usecases"><a class="uc-btn" href="/usecases/beschaffung1.html">Use Case 1</a><a class="uc-btn" href="/usecases/beschaffung2.html">Use Case 2</a></div></div>
+          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4V4zm0 8h7v8H4v-8zm9 0h7v8h-7v-8z"/></svg></div><h3>Produktion</h3><p>Computer Vision & Anomalie-Detection.</p><div class="usecases"><a class="uc-btn" href="/usecases/produktion1.html">Use Case 1</a><a class="uc-btn" href="/usecases/produktion2.html">Use Case 2</a></div></div>
+          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M21 7l-2 2h-3l-2 2 3 3-2 2-3-3-3 3-2-2 3-3-2-2H5L3 7l2-2h3l2-2 3 3 3-3 2 2h3l2 2z"/></svg></div><h3>Instandhaltung</h3><p>Predictive Maintenance über Sensordaten.</p><div class="usecases"><a class="uc-btn" href="/usecases/instandhaltung1.html">Use Case 1</a><a class="uc-btn" href="/usecases/instandhaltung2.html">Use Case 2</a></div></div>
+          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3V7zm13 0l5 3v7h-5V7zm-9 9a2 2 0 110-4 2 2 0 010 4zm8 0a2 2 0 110-4 2 2 0 010 4z"/></svg></div><h3>Logistik</h3><p>Optimierung von Routen, Lagerbeständen & Verpackung.</p><div class="usecases"><a class="uc-btn" href="/usecases/logistik1.html">Use Case 1</a><a class="uc-btn" href="/usecases/logistik2.html">Use Case 2</a></div></div>
+          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 017-7zm0 9.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg></div><h3>After-Sales</h3><p>Personalisierte Kommunikation & Service-Automatisierung.</p><div class="usecases"><a class="uc-btn" href="/usecases/after-sales1.html">Use Case 1</a><a class="uc-btn" href="/usecases/after-sales2.html">Use Case 2</a></div></div>
+        </div>
+        <p class="note">Wir orchestrieren die gesamte KI-Tool-Chain: Datenerfassung → Plattform → Modelle → Deployment → Monitoring.</p>
+      </section>
+
+      <section id="usp">
+        <h2>Unsere USPs</h2>
+        <p>Herstellerunabhängig • Vollständig gemanagt • Skalierbar • Schneller ROI</p>
+      </section>
+
+      <section class="process-section">
+        <h2 class="process-title">Wir orchestrieren die gesamte KI-Tool-Chain</h2>
+        <div class="process-flow-edgy" id="edgyFlow"></div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="contact-wrapper">
+          <h2>Kostenlose Erstberatung anfragen</h2>
+          <p class="contact-subtitle">In 48 h melden wir uns mit einem konkreten Umsetzungsvorschlag bei Ihnen.</p>
+          <form id="contact-form" action="https://formspree.io/f/xblrjwpj" method="POST">
+            <div class="form-grid">
+              <input type="text" name="name" placeholder="Vor- & Nachname *" required>
+              <input type="text" name="company" placeholder="Unternehmen *" required>
+              <input type="tel" name="phone" placeholder="Telefonnummer *" required>
+              <input type="email" name="_replyto" placeholder="E-Mail-Adresse *" required>
+            </div>
+            <textarea name="message" rows="5" placeholder="Ihr Anliegen / gewünschter Termin" required></textarea>
+            <div class="checkbox">
+              <label><input type="checkbox" name="datenschutz" required> Ich akzeptiere die <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> *</label>
+            </div>
+            <button type="submit" class="submit-btn">Kostenlose Beratung anfragen →</button>
+            <div class="form-status" id="form-status"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 NEO-AI · KickIT Consulting</p>
+    </footer>
   </div>
 
-  <main class="container">
-    <section class="hero" id="home" style="opacity:0; transition:opacity 1.5s;">
-      <h1>NEO-AI: Wertschöpfungsorientierte KI-Toolchain für das produzierende Gewerbe</h1>
-      <p class="lead">Wir wählen die richtigen KI-Tools, implementieren Ihre Tool-Chain und betreiben die gesamte Infrastruktur.</p>
-      <a class="cta" href="#contact">Beratung anfragen</a>
-    </section>
-
-    <!-- === Alle deine ursprünglichen Sections (unverändert) === -->
-    <section id="challenges"> <!-- ... dein ganzer Challenges-Block ... --> </section>
-    <section id="integration"> <!-- ... dein ganzer Integration-Block ... --> </section>
-    <section id="usp"> <!-- ... USP ... --> </section>
-    <section class="process-section"> <!-- ... Process Flow ... --> </section>
-    <section class="contact-section" id="contact"> <!-- ... Kontaktformular ... --> </section>
-    <!-- (Ich lasse sie hier der Übersicht halber aus – du hast sie ja bereits im Code oben) -->
-  </main>
-
-  <footer class="footer">
-    <p>© 2025 NEO-AI · KickIT Consulting</p>
-  </footer>
-
-  <!-- ====================== Haupt-JavaScript (dein Original + kleine Anpassungen) ====================== -->
+  <!-- ====================== DEIN URSPRÜNGLICHES JAVASCRIPT (komplett & unverändert) ====================== -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const terminal = document.getElementById('terminal-intro');
+      const hero = document.querySelector('.hero');
 
-      // Terminal nach 5 Sekunden ausblenden
+      // Terminal ausblenden
       setTimeout(() => {
-        terminal.style.opacity = '0';
-        setTimeout(() => { terminal.style.display = 'none'; }, 1000);
-      }, 5500);
+        if (terminal) { terminal.style.opacity = '0'; setTimeout(() => { terminal.style.display = 'none'; }, 1000); }
+      }, 6000);
 
       // Morphing Blob
       const blob = document.getElementById("morphing-blob");
@@ -198,43 +245,42 @@
         }}});
       }
 
-      // Neural Background Canvas
+      // Neural Canvas Hintergrund
       const canvas = document.getElementById("neural-bg");
       if (canvas) {
         const ctx = canvas.getContext("2d");
         canvas.width = innerWidth; canvas.height = innerHeight;
         const particles = []; const N = 80;
-        class P {
-          constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*3+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; }
+        class P { constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*3+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; }
           update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width || this.x < 0) this.speedX *= -1; if (this.y > canvas.height || this.y < 0) this.speedY *= -1; }
           draw() { ctx.fillStyle = "rgba(0,150,255,0.8)"; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
         }
         for(let i=0;i<N;i++) particles.push(new P());
-        const connect = () => {
-          for(let a=0;a<particles.length;a++)
-            for(let b=a;b<particles.length;b++) {
-              const d = Math.hypot(particles[a].x-particles[b].x, particles[a].y-particles[b].y);
-              if(d<120){
-                ctx.strokeStyle = `rgba(0,150,255,${1-d/120})`;
-                ctx.lineWidth = 0.5;
-                ctx.beginPath();
-                ctx.moveTo(particles[a].x,particles[a].y);
-                ctx.lineTo(particles[b].x,particles[b].y);
-                ctx.stroke();
-              }
-            }
+        const connect = () => { 
+          for(let a=0;a<particles.length;a++) 
+            for(let b=a;b<particles.length;b++) { 
+              const d = Math.hypot(particles[a].x-particles[b].x, particles[a].y-particles[b].y); 
+              if(d<120){ 
+                ctx.strokeStyle = `rgba(0,150,255,${1-d/120})`; 
+                ctx.lineWidth = 0.5; 
+                ctx.beginPath(); 
+                ctx.moveTo(particles[a].x,particles[a].y); 
+                ctx.lineTo(particles[b].x,particles[b].y); 
+                ctx.stroke(); 
+              } 
+            } 
         };
-        const anim = () => {
-          ctx.clearRect(0,0,canvas.width,canvas.height);
-          particles.forEach(p=>{p.update();p.draw();});
-          connect();
-          requestAnimationFrame(anim);
+        const anim = () => { 
+          ctx.clearRect(0,0,canvas.width,canvas.height); 
+          particles.forEach(p=>{p.update();p.draw();}); 
+          connect(); 
+          requestAnimationFrame(anim); 
         };
         anim();
         window.addEventListener("resize",()=>{canvas.width=innerWidth;canvas.height=innerHeight;});
       }
 
-      // GSAP Scroll-Animationen
+      // GSAP ScrollTrigger Animationen
       if (window.gsap) {
         gsap.registerPlugin(ScrollTrigger);
         gsap.to("header.nav", { y: 0, opacity: 1, duration: 1, delay: 1 });
@@ -248,7 +294,7 @@
         form.addEventListener('submit', (e) => {
           e.preventDefault();
           setTimeout(() => {
-            status.innerHTML = 'Vielen Dank! Wir melden uns innerhalb von 48 Stunden.';
+            status.innerHTML = 'Vielen Dank! Wir melden uns innerhalb von 48 Stunden bei Ihnen.';
             status.className = 'success';
             form.reset();
           }, 800);
