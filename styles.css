@@ -221,4 +221,30 @@ html, body {
   transform: scale(1.12);
   filter: drop-shadow(0 0 10px rgba(110,240,255,0.75));
 }
+.usecases {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.uc-btn {
+  padding: 6px 12px;
+  background: rgba(110,240,255,0.08);
+  border: 1px solid rgba(110,240,255,0.25);
+  border-radius: 8px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.uc-btn:hover {
+  background: rgba(110,240,255,0.18);
+  border-color: var(--accent);
+  transform: translateX(-4px);
+  box-shadow: 0 0 12px rgba(110,240,255,0.4);
+}
 
