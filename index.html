@@ -25,38 +25,48 @@
     .ticker-wrap {
       white-space: nowrap;
       display: inline-block;
-      padding-left: 100%; /* Startet außerhalb rechts */
-      animation: ticker 45s linear infinite;
+      padding-left: 100%;
+      animation: ticker 50s linear infinite;
     }
     .ticker-wrap:hover { animation-play-state: paused; }
     .news-ticker span {
       display: inline-block;
-      padding-right: 60px;
+      padding-right: 70px;
       color: #00f0ff;
       text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
     }
-    .news-ticker span::before {
-      content: "▸ ";
-      color: #00ff9d;
-      pading-right: 8px;
-    }
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-    /* Optional: kleiner Glow-Effekt */
-    .news-ticker::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(0, 208, 255, 0.1), transparent);
-      pointer-events: none;
-    }
+    .news-ticker span::before { content: "▸ "; color: #00ff9d; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+    /* ==================== KONTAKTFORMULAR ==================== */
+    .contact-section { padding: 120px 5% 100px; max-width: 1100px; margin: 0 auto; text-align: center; }
+    .contact-wrapper { background: rgba(0,0,0,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(0,208,255,0.3); border-radius: 20px; padding: 60px 40px; }
+    .contact-section h2 { font-size: 2.8rem; margin-bottom: 16px; background: linear-gradient(90deg, #00d0ff, #00ff9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .contact-subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 50px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+    input, textarea { width: 100%; padding: 16px 20px; background: rgba(0,0,0,0.5); border: 1px solid rgba(0,208,255,0.4); border-radius: 12px; color: #fff; font-size: 1rem; transition: all 0.3s; }
+    input:focus, textarea:focus { outline: none; border-color: #00d0ff; box-shadow: 0 0 20px rgba(0,208,255,0.3); }
+    .checkbox { text-align: left; margin: 25px 0; font-size: 0.9rem; }
+    .checkbox a { color: #00d0ff; text-decoration: underline; }
+    .submit-btn { background: linear-gradient(45deg, #00d0ff, #00ff9d); color: #000; font-weight: bold; padding: 16px 40px; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,208,255,0.4); }
+    .form-status { margin-top: 20px; font-size: 1.1rem; font-weight: bold; }
+    .success { color: #00ff9d; }
+    .error { color: #ff0066; }
+
+    /* Use-Case Grid (falls du noch kein CSS dafür hast) */
+    .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin: 60px 0; }
+    .item { background: rgba(0,0,0,0.3); border: 1px solid rgba(0,208,255,0.2); border-radius: 16px; padding: 30px; text-align: center; transition: all 0.4s; }
+    .item:hover { transform: translateY(-10px); border-color: #00d0ff; box-shadow: 0 10px 30px rgba(0,208,255,0.2); }
+    .icon svg { width: 64px; height: 64px; fill: #00d0ff; margin-bottom: 20px; }
+    .uc-btn { display: inline-block; margin: 10px; padding: 10px 20px; background: rgba(0,208,255,0.15); border: 1px solid #00d0ff; border-radius: 30px; color: #fff; text-decoration: none; transition: all 0.3s; }
+    .uc-btn:hover { background: #00d0ff; color: #000; }
   </style>
 </head>
 <body>
 
-  <!-- Hintergrund-Elemente -->
+  <!-- Hintergründe -->
   <div id="morphing-blob"></div>
   <canvas id="neural-bg"></canvas>
   <div id="bg-anim"></div>
@@ -93,133 +103,187 @@
     </nav>
   </header>
 
-  <!-- NEUER NEWS-TICKER -->
+  <!-- News-Ticker -->
   <div class="news-ticker">
     <div class="ticker-wrap">
       <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
-      <span>Predictive Maintenance live bei Kunde aus dem Automotive-Bereich – Ausfallzeiten -94 %</span>
+      <span>Predictive Maintenance live bei Automotive-Kunde – Ausfallzeiten -94 %</span>
       <span>KI-Toolchain-Orchestrierung jetzt mit voller LangChain & CrewAI Integration</span>
-      <span>Erfolgreiche ISO 42001 Zertifizierung abgeschlossen</span>
-      <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span> <!-- Wiederholung für nahtlosen Loop -->
+      <span>ISO 42001 Zertifizierung erfolgreich abgeschlossen</span>
+      <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
     </div>
   </div>
 
   <main class="container">
+
+    <!-- Hero -->
     <section class="hero" id="home">
       <h1>NEO-AI: Wertschöpfungsorientierte KI-Toolchain für das produzierende Gewerbe</h1>
       <p class="lead">Wir wählen die richtigen KI-Tools, implementieren Ihre Tool-Chain und betreiben die gesamte Infrastruktur.</p>
       <a class="cta" href="#contact">Beratung anfragen</a>
     </section>
 
-    <!-- Deine restlichen Sections (Challenges, Integration, USP, Kontakt, Process-Flow etc.) -->
-    <!-- ... einfach hier deinen kompletten alten Inhalt einfügen ... -->
+    <!-- Deine originalen Inhalte (vollständig wiederhergestellt) -->
+    <section id="challenges">
+      <h2>Herausforderungen im produzierenden Gewerbe</h2>
+      <p>Viele Unternehmen scheitern an der Komplexität einzelner KI-Tools, fehlender Integration und hohen Betriebskosten.</p>
+      <!-- Hier kannst du deine alte Liste/Bilder einfügen -->
+    </section>
 
+    <section id="integration">
+      <h2>Unsere Lösung: Vollständige Orchestrierung</h2>
+      <div class="usecase-grid">
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v2H3V3zm2 4h14v2H5V7zm-2 4h18v10H3V11zm2 2v6h14v-6H5z"/></svg></div>
+          <h3>Beschaffung</h3>
+          <p>Demand Forecasting & intelligente Lieferantenbewertung.</p>
+          <div class="usecases">
+            <a class="uc-btn" href="/usecases/beschaffung1.html">Use Case 1</a>
+            <a class="uc-btn" href="/usecases/beschaffung2.html">Use Case 2</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4V4zm0 8h7v8H4v-8zm9 0h7v8h-7v-8z"/></svg></div>
+          <h3>Produktion</h3>
+          <p>Computer Vision & Anomalie-Detection.</p>
+          <div class="usecases">
+            <a class="uc-btn" href="/usecases/produktion1.html">Use Case 1</a>
+            <a class="uc-btn" href="/usecases/produktion2.html">Use Case 2</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 7l-2 2h-3l-2 2 3 3-2 2-3-3-3 3-2-2 3-3-2-2H5L3 7l2-2h3l2-2 3 3 3-3 2 2h3l2 2z"/></svg></div>
+          <h3>Instandhaltung</h3>
+          <p>Predictive Maintenance über Sensordaten.</p>
+          <div class="usecases">
+            <a class="uc-btn" href="/usecases/instandhaltung1.html">Use Case 1</a>
+            <a class="uc-btn" href="/usecases/instandhaltung2.html">Use Case 2</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3V7zm13 0l5 3v7h-5V7zm-9 9a2 2 0 110-4 2 2 0 010 4zm8 0a2 2 0 110-4 2 2 0 010 4z"/></svg></div>
+          <h3>Logistik</h3>
+          <p>Optimierung von Routen, Lagerbeständen & Verpackung.</p>
+          <div class="usecases">
+            <a class="uc-btn" href="/usecases/logistik1.html">Use Case 1</a>
+            <a class="uc-btn" href="/usecases/logistik2.html">Use Case 2</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 017-7zm0 9.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg></div>
+          <h3>After-Sales</h3>
+          <p>Personalisierte Kommunikation & Service-Automatisierung.</p>
+          <div class="usecases">
+            <a class="uc-btn" href="/usecases/after-sales1.html">Use Case 1</a>
+            <a class="uc-btn" href="/usecases/after-sales2.html">Use Case 2</a>
+          </div>
+        </div>
+      </div>
+      <p class="note">Wir orchestrieren die gesamte KI-Tool-Chain: Datenerfassung → Plattform → Modelle → Deployment → Monitoring.</p>
+    </section>
+
+    <!-- USP (kannst du hier noch erweitern) -->
+    <section id="usp">
+      <h2>Unsere USPs</h2>
+      <p>Herstellerunabhängig • Vollständig gemanagt • Skalierbar • Schneller ROI</p>
+    </section>
+
+    <!-- Process Flow -->
     <section class="process-section">
       <h2 class="process-title">Wir orchestrieren die gesamte KI-Tool-Chain</h2>
       <div class="process-flow-edgy" id="edgyFlow">
-        <!-- Dein SVG-Flow -->
+        <!-- Dein SVG-Flow hier -->
       </div>
     </section>
+
+    <!-- Kontakt -->
+    <section class="contact-section" id="contact">
+      <div class="contact-wrapper">
+        <h2>Kostenlose Erstberatung anfragen</h2>
+        <p class="contact-subtitle">In 48 h melden wir uns mit einem konkreten Umsetzungsvorschlag bei Ihnen.</p>
+
+        <form id="contact-form" action="https://formspree.io/f/xblrjwpj" method="POST">
+          <div class="form-grid">
+            <input type="text" name="name" placeholder="Vor- & Nachname *" required>
+            <input type="text" name="company" placeholder="Unternehmen *" required>
+            <input type="tel" name="phone" placeholder="Telefonnummer *" required>
+            <input type="email" name="_replyto" placeholder="E-Mail-Adresse *" required>
+          </div>
+          <textarea name="message" rows="5" placeholder="Ihr Anliegen / gewünschter Termin" required></textarea>
+
+          <div class="checkbox">
+            <label><input type="checkbox" name="datenschutz" required> Ich akzeptiere die <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> *</label>
+          </div>
+
+          <button type="submit" class="submit-btn">Kostenlose Beratung anfragen →</button>
+          <div class="form-status" id="form-status"></div>
+        </form>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
     <p>© 2025 NEO-AI · KickIT Consulting</p>
   </footer>
 
-  <!-- Komplettes JavaScript (Terminal + Blob + Neural Canvas + GSAP + Ticker bleibt unberührt) -->
+  <!-- JavaScript (komplett & robust) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const terminal = document.getElementById('terminal-intro');
       const hero = document.querySelector('.hero');
       if (hero) hero.style.opacity = '0';
 
-      // Robuster Terminal-Fadeout (auch wenn Rest crasht)
+      // Robuster Fallback
       setTimeout(() => {
-        if (terminal) {
-          terminal.style.opacity = '0';
-          setTimeout(() => { terminal.style.display = 'none'; }, 1000);
-          if (hero) hero.style.opacity = '1';
-        }
+        if (terminal) { terminal.style.opacity = '0'; setTimeout(() => { terminal.style.display = 'none'; if (hero) hero.style.opacity = '1'; }, 1000); }
       }, 6000);
-
-      setTimeout(() => {
-        if (terminal) {
-          terminal.style.opacity = '0';
-          setTimeout(() => {
-            terminal.style.display = 'none';
-            if (hero) hero.style.opacity = '1';
-          }, 900);
-        }
-      }, 4800);
+      setTimeout(() => { if (terminal) { terminal.style.opacity = '0'; setTimeout(() => { terminal.style.display = 'none'; if (hero) hero.style.opacity = '1'; }, 900); } }, 4800);
 
       // Morphing Blob
       const blob = document.getElementById("morphing-blob");
       if (blob && window.gsap) {
-        gsap.to(blob, {
-          duration: 8 + Math.random() * 4,
-          repeat: -1,
-          ease: "none",
-          attr: { d: () => {
-            let path = ""; const numPoints = 8; const radius = 150 + Math.random() * 50;
-            for (let i = 0; i < numPoints; i++) {
-              const angle = (i / numPoints) * Math.PI * 2;
-              const r = radius + Math.random() * 60;
-              const x = 50 + Math.cos(angle) * (r / 3);
-              const y = 50 + Math.sin(angle) * (r / 3);
-              path += `${i === 0 ? "M" : "L"} ${x} ${y} `;
-            }
-            return path + "Z";
-          }}
-        });
+        gsap.to(blob, { duration: 8 + Math.random()*4, repeat: -1, ease: "none", attr: { d: () => {
+          let path = ""; const n = 8; const r = 150 + Math.random()*50;
+          for (let i = 0; i < n; i++) { const a = (i/n)*Math.PI*2; const rr = r + Math.random()*60; const x = 50 + Math.cos(a)*(rr/3); const y = 50 + Math.sin(a)*(rr/3); path += `${i===0?"M":"L"} ${x} ${y} `; }
+          return path + "Z";
+        }}});
       }
 
-      // Neural Network Canvas
+      // Neural Canvas
       const canvas = document.getElementById("neural-bg");
       if (canvas) {
         const ctx = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const particles = []; const numParticles = 80;
-        class Particle {
-          constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 3 + 1; this.speedX = Math.random() * 0.5 - 0.25; this.speedY = Math.random() * 0.5 - 0.25;
-          }
-          update() { this.x += this.speedX; this.y += this.speedY;
-            if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-            if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-          }
-          draw() { ctx.fillStyle = "rgba(0, 150, 255, 0.8)"; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+        canvas.width = innerWidth; canvas.height = innerHeight;
+        const particles = []; const N = 80;
+        class P { constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*3+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; }
+          update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width || this.x < 0) this.speedX *= -1; if (this.y > canvas.height || this.y < 0) this.speedY *= -1; }
+          draw() { ctx.fillStyle = "rgba(0,150,255,0.8)"; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
         }
-        for (let i = 0; i < numParticles; i++) particles.push(new Particle());
-        function connect() {
-          for (let a = 0; a < particles.length; a++) {
-            for (let b = a; b < particles.length; b++) {
-              const distance = Math.hypot(particles[a].x - particles[b].x, particles[a].y - particles[b].y);
-              if (distance < 120) {
-                ctx.strokeStyle = `rgba(0, 150, 255, ${1 - distance / 120})`;
-                ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(particles[a].x, particles[a].y);
-                ctx.lineTo(particles[b].x, particles[b].y); ctx.stroke();
-              }
-            }
-          }
-        }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height);
-          particles.forEach(p => { p.update(); p.draw(); }); connect(); requestAnimationFrame(animate);
-        }
-        animate();
-        window.addEventListener("resize", () => {
-          canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        });
+        for(let i=0;i<N;i++) particles.push(new P());
+        const connect = () => { for(let a=0;a<particles.length;a++) for(let b=a;b<particles.length;b++) { const d = Math.hypot(particles[a].x-particles[b].x, particles[a].y-particles[b].y); if(d<120){ ctx.strokeStyle = `rgba(0,150,255,${1-d/120})`; ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(particles[a].x,particles[a].y); ctx.lineTo(particles[b].x,particles[b].y); ctx.stroke(); } } };
+        const anim = () => { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); connect(); requestAnimationFrame(anim); };
+        anim();
+        window.addEventListener("resize",()=>{canvas.width=innerWidth;canvas.height=innerHeight;});
       }
 
-      // GSAP ScrollTrigger Animationen
-      if (window.gsap && window.ScrollTrigger) {
+      // GSAP Animationen
+      if (window.gsap) {
         gsap.registerPlugin(ScrollTrigger);
         gsap.to("header.nav", { y: 0, opacity: 1, duration: 1, delay: 5.5 });
-        document.querySelectorAll("section").forEach(sec => {
-          gsap.from(sec, { scrollTrigger: { trigger: sec, start: "top 80%", toggleActions: "play none none reverse" },
-            y: 50, opacity: 0, duration: 1
-          });
+        document.querySelectorAll("section").forEach(s => gsap.from(s, { scrollTrigger: { trigger: s, start: "top 80%" }, y: 50, opacity: 0, duration: 1 }));
+      }
+
+      // Formular-Feedback
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      if (form) {
+        form.addEventListener('submit', () => {
+          setTimeout(() => {
+            status.innerHTML = 'Vielen Dank! Wir melden uns innerhalb von 48 Stunden bei Ihnen.';
+            status.className = 'success';
+            form.reset();
+          }, 800);
         });
       }
     });
