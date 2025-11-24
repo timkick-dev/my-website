@@ -305,3 +305,6 @@ input:focus, textarea:focus {
   .challenge-card, .item { padding: 26px 20px; }
   .contact-wrapper { padding: 40px 24px; }
 }
+.challenge-card .icon {
+  filter: grayscale(100%) brightness(0.7);
+}
