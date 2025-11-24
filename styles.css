@@ -4,19 +4,19 @@
 :root {
   --bg-dark: #0d0d0d;
   --bg-box: #141414;
-  --bg-box-hover: #181818;
+  --bg-box-hover: #1b1b1b;
 
   --border: #222;
   --border-focus: #333;
 
   --text-main: #e5e5e5;
-  --text-sub: #ccc;
-  --text-muted: #999;
+  --text-sub: #c8c8c8;
+  --text-muted: #888;
 
-  --icon-color: #999; /* Einheitliche Iconfarbe */
+  --icon-color: #bcbcbc;
 }
 
-/* -------------------- GLOBAL -------------------- */
+/* GLOBAL */
 
 body {
   background: var(--bg-dark);
@@ -27,7 +27,7 @@ body {
   line-height: 1.5;
 }
 
-/* -------------------- HEADER -------------------- */
+/* HEADER */
 
 header.nav {
   position: fixed;
@@ -35,16 +35,10 @@ header.nav {
   z-index: 1000;
   background: #111;
   padding: 14px 5%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   border-bottom: 1px solid var(--border);
-}
-
-header.nav .logo img {
-  height: 40px;
 }
 
 header.nav .brand .name {
@@ -69,7 +63,7 @@ header.nav nav a:hover {
   color: var(--text-main);
 }
 
-/* -------------------- NEWS TICKER -------------------- */
+/* NEWS TICKER */
 
 .news-ticker {
   margin-top: 66px;
@@ -88,14 +82,8 @@ header.nav nav a:hover {
   animation: ticker 35s linear infinite;
 }
 
-.ticker-wrap:hover {
-  animation-play-state: paused;
-}
-
 .news-ticker span {
-  display: inline-block;
   padding-right: 50px;
-  color: var(--text-sub);
 }
 
 .news-ticker span::before {
@@ -108,9 +96,9 @@ header.nav nav a:hover {
   100% { transform: translateX(-100%); }
 }
 
-/* -------------------- HEADLINES -------------------- */
+/* HEADLINES */
 
-section h2, .process-title {
+section h2 {
   text-align: center;
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 700;
@@ -118,7 +106,7 @@ section h2, .process-title {
   color: var(--text-main);
 }
 
-/* -------------------- CHALLENGES -------------------- */
+/* CHALLENGES */
 
 .challenges-grid {
   display: grid;
@@ -135,17 +123,17 @@ section h2, .process-title {
   border-radius: 12px;
   padding: 32px 26px;
   text-align: center;
-  transition: background 0.3s;
+  transition: .25s;
 }
 
 .challenge-card:hover {
   background: var(--bg-box-hover);
 }
 
-.challenge-card .icon {
-  font-size: 3rem;
-  margin-bottom: 16px;
-  color: var(--icon-color);
+.challenge-card img {
+  width: 64px;
+  filter: grayscale(100%) brightness(0.8);
+  margin-bottom: 20px;
 }
 
 .challenge-card h3 {
@@ -154,7 +142,7 @@ section h2, .process-title {
   color: var(--text-sub);
 }
 
-/* -------------------- USE CASE GRID -------------------- */
+/* USE CASE GRID */
 
 .usecase-grid {
   display: grid;
@@ -171,43 +159,22 @@ section h2, .process-title {
   border-radius: 12px;
   padding: 32px 26px;
   text-align: center;
-  transition: background 0.3s;
+  transition: .25s;
 }
 
 .item:hover {
   background: var(--bg-box-hover);
 }
 
-.item .icon svg {
+.item img {
   width: 60px;
-  height: 60px;
-  fill: var(--icon-color);
+  filter: grayscale(100%) brightness(0.8);
   margin-bottom: 20px;
 }
 
-.uc-btn {
-  display: inline-block;
-  margin: 10px 6px;
-  padding: 10px 22px;
+/* TEXT */
 
-  background: #1b1b1b;
-  border: 1px solid var(--border-focus);
-  border-radius: 20px;
-
-  color: var(--text-main);
-  text-decoration: none;
-  font-size: 0.9rem;
-
-  transition: background 0.2s;
-}
-
-.uc-btn:hover {
-  background: #222;
-}
-
-/* -------------------- TEXTZONEN -------------------- */
-
-.integration-lead, .note {
+.integration-lead {
   text-align: center;
   font-size: 1.2rem;
   max-width: 800px;
@@ -215,7 +182,7 @@ section h2, .process-title {
   color: var(--text-sub);
 }
 
-/* -------------------- KONTAKTFORMULAR -------------------- */
+/* KONTAKT */
 
 .contact-section {
   padding: 120px 5% 80px;
@@ -241,13 +208,6 @@ section h2, .process-title {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 input, textarea {
@@ -257,54 +217,18 @@ input, textarea {
   border: 1px solid var(--border-focus);
   border-radius: 12px;
   color: var(--text-main);
-  font-size: 1rem;
-}
-
-input:focus, textarea:focus {
-  border-color: var(--text-sub);
-  outline: none;
-}
-
-.checkbox {
-  text-align: left;
-  margin: 20px 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-
-.checkbox a {
-  color: var(--text-sub);
-  text-decoration: underline;
 }
 
 .submit-btn {
   background: var(--text-main);
-  color: var(--bg-dark);
+  color: #000;
   font-weight: 600;
   padding: 16px 40px;
-  border: none;
   border-radius: 40px;
-  font-size: 1.1rem;
-  cursor: pointer;
+  border: none;
+  margin-top: 20px;
 }
 
 .submit-btn:hover {
   background: #fff;
-}
-
-.success {
-  color: #8fda9b;
-}
-
-/* -------------------- MOBILE -------------------- */
-
-@media (max-width: 768px) {
-  header.nav { padding: 10px 5%; }
-  .news-ticker { margin-top: 58px; font-size: 12px; }
-  section h2, .process-title { margin-bottom: 40px; }
-  .challenge-card, .item { padding: 26px 20px; }
-  .contact-wrapper { padding: 40px 24px; }
-}
-.challenge-card .icon {
-  filter: grayscale(100%) brightness(0.7);
 }

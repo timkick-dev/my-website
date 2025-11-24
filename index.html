@@ -1,603 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>NEO-AI</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEO AI – Consulting & Integration</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
-  <!-- ====================== NEO-AI INTRO MIT Logo.svg ====================== -->
-  <div id="neo-intro">
-    <div class="logo-center">
-      <img src="Logo.svg" alt="NEO-AI Logo">
-    </div>
-    <div class="steps">
-      <div class="step">Phase 01 — Deep Process Discovery</div>
-      <div class="step">Phase 02 — Intelligent Opportunity Mining</div>
-      <div class="step">Phase 03 — Efficient toolchain development</div>
-      <div class="step">Phase 04 — Rapid MVP & Validation Loop</div>
-      <div class="step">Phase 05 — Full-Scale Rollout & Operations</div>
-    </div>
-  </div>
-
-  <style>
-    #neo-intro {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, #0a1f3d 0%, #000 80%);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Orbitron', sans-serif;
-      color: #00ffff;
-      pointer-events: none;
-    }
-    #neo-intro .logo-center img {
-      height: 180px;
-      width: auto;
-      max-width: 90vw;
-      filter: drop-shadow(0 0 60px #00ffff);
-      opacity: 0;
-      animation: fadeIn 1.5s ease-out 0.5s forwards, pulse 4s infinite alternate 2s;
-    }
-    #neo-intro .steps .step {
-      opacity: 0;
-      font-size: 2.8vw;
-      font-weight: 300;
-      letter-spacing: 5px;
-      text-shadow: 0 0 30px #00ffff;
-      margin: 2.5vh 0;
-      transform: translateY(50px);
-      transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    #neo-intro .steps .step.show {
-      opacity: 1;
-      transform: translateY(0);
-      text-shadow: 0 0 50px #00ffff, 0 0 100px #00ffff;
-    }
-    #neo-intro .step::before {
-      content: "";
-      display: inline-block;
-      width: 14px; height: 14px;
-      margin-right: 28px;
-      border: 2px solid #00ffff;
-      border-radius: 50%;
-      box-shadow: 0 0 30px #00ffff;
-      vertical-align: middle;
-      opacity: 0;
-      animation: dotPulse 2s infinite;
-    }
-    #neo-intro .step.show::before { opacity: 1; }
-    @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes pulse { 0% { filter: drop-shadow(0 0 60px #00ffff); } 100% { filter: drop-shadow(0 0 100px #00ffff); } }
-    @keyframes dotPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.6); } }
-    @media (max-width: 768px) {
-      #neo-intro .steps .step { font-size: 5.5vw; }
-      #neo-intro .logo-center img { height: 120px; }
-    }
-  </style>
-
-  <script>
-    window.addEventListener('load', () => {
-      const intro = document.getElementById('neo-intro');
-      const steps = document.querySelectorAll('#neo-intro .step');
-
-      steps.forEach((step, i) => {
-        setTimeout(() => step.classList.add('show'), 1400 + i * 800);
-      });
-
-      setTimeout(() => {
-        intro.style.transition = 'opacity 1.8s ease-out';
-        intro.style.opacity = '0';
-        setTimeout(() => {
-          intro.remove();
-          document.documentElement.style.overflow = 'auto';
-          document.getElementById('main-content').style.display = 'block';
-          document.getElementById('terminal-intro').style.opacity = '1';
-          document.querySelector('.hero').style.opacity = '1';
-        }, 1800);
-      }, 1400 + steps.length * 800 + 1600);
-    });
-  </script>
-
-  <!-- ====================== GANZE SEITE (wird erst nach Intro sichtbar) ====================== -->
-  <div id="main-content" style="display:none;">
-
-    <div id="morphing-blob"></div>
-    <canvas id="neural-bg"></canvas>
-    <div id="bg-anim"></div>
-
-    <div id="terminal-intro" style="opacity:0; transition:opacity 1.5s;">
-      <div class="terminal">
-        <pre>
-  NEO-AI OS v2.7 booting...
-  Initializing MLOps kernel..............OK
-  Loading 2.1 TB production data.........DONE
-  Scanning Local PSW Setting ............DONE
-  Optimizing 63 active models............RUNNING
-  Tool-Chain orchestration active ✓
-<span class="cursor">_</span>
-        </pre>
-      </div>
+<!-- HEADER -->
+<header class="nav">
+    <div class="brand">
+        <div class="name">NEO AI</div>
+        <div class="sub">Consulting & Integration</div>
     </div>
 
-    <header class="nav">
-      <div class="logo">
-        <img src="Logo.svg" alt="NEO-AI">
-        <div class="brand">
-          <div class="name">NEO-AI</div>
-          <div class="sub">powered by KickIT Consulting</div>
-        </div>
-      </div>
-      <nav>
+    <nav>
         <a href="#challenges">Herausforderungen</a>
-        <a href="#integration">Integration</a>
-        <a href="#usp">USP</a>
-        <a href="#contact">Kontakt</a>
-      </nav>
-    </header>
+        <a href="#usecases">Use Cases</a>
+        <a href="#kontakt">Kontakt</a>
+    </nav>
+</header>
 
-    <div class="news-ticker">
-      <div class="ticker-wrap">
-        <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
-        <span>Predictive Maintenance live bei Automotive-Kunde – Ausfallzeiten -94 %</span>
-        <span>KI-Toolchain-Orchestrierung jetzt mit voller LangChain & CrewAI Integration</span>
-        <span>NEO-AI erhält Innovationspreis 2025 für effiziente KI-Lösungen</span>
-        <span>ISO 42001 Zertifizierung erfolgreich abgeschlossen</span>
-        <span>NEU: NEO-AI spart 2025 durchschnittlich 1,8 Mio € pro Produktionsstandort</span>
-      </div>
+<!-- NEWS TICKER -->
+<div class="news-ticker">
+    <div class="ticker-wrap">
+        <span>NEO AI – Ihr Partner für Automatisierung</span>
+        <span>Langjährige Erfahrung in KI-Integration</span>
+        <span>Beratung für Unternehmen jeder Größe</span>
     </div>
+</div>
 
-    <main class="container">
-      <section class="hero" id="home" style="opacity:0; transition:opacity 1.5s;">
-        <h1>NEO-AI: Wertschöpfungsorientierte KI-Toolchain für das produzierende Gewerbe</h1>
-        <p class="lead">Wir wählen die richtigen KI-Tools, implementieren Ihre Tool-Chain und betreiben die gesamte Infrastruktur.</p>
-        <a class="cta" href="#contact">Beratung anfragen</a>
-      </section>
-
+<!-- CHALLENGES -->
 <section id="challenges">
-  <h2>Herausforderungen im produzierenden Gewerbe 2025</h2>
+    <h2>Ihre Herausforderungen</h2>
 
-  <div class="challenges-grid">
-    <div class="challenge-card">
-      <div class="icon">⚠️</div>
-      <h3>Insellösungen & Silo-Denken</h3>
-      <p>Viele KI-Tools funktionieren isoliert – keine durchgängige Toolchain von der Datenerfassung bis zum Monitoring.</p>
-    </div>
+    <div class="challenges-grid">
 
-    <div class="challenge-card">
-      <div class="icon">💸</div>
-      <h3>Explodierende Kosten & lange ROI-Zeit</h3>
-      <p>Lizenzkosten, Custom-Entwicklung und Cloud-Ressourcen lassen Projekte schnell siebenstellig werden – oft ohne sichtbaren Nutzen im ersten Jahr.</p>
-    </div>
-
-    <div class="challenge-card">
-      <div class="icon">🔧</div>
-      <h3>Fehlende Shopfloor-Integration</h3>
-      <p>Die meisten KI-Lösungen sind nicht für raue Produktionsumgebungen (PLC, SCADA, MES, Edge) ausgelegt und scheitern bereits an der Anbindung.</p>
-    </div>
-
-    <div class="challenge-card">
-      <div class="icon">🧠</div>
-      <h3>Mangel an KI-Kompetenz intern</h3>
-      <p>Data Scientists sind teuer, rar und oft nach 6 Monaten wieder weg – Werksleiter wollen keine Black-Box, sondern verständliche Ergebnisse.</p>
-    </div>
-
-    <div class="challenge-card">
-      <div class="icon">⏱️</div>
-      <h3>Endlos lange Time-to-Value</h3>
-      <p>Von der Idee bis zum ersten produktiven Modell vergehen häufig 18–36 Monate – viel zu langsam für den aktuellen Wettbewerbsdruck.</p>
-    </div>
-
-    <div class="challenge-card">
-      <div class="icon">🔒</div>
-      <h3>Datenschutz & IT-Security-Bedenken</h3>
-      <p>Sensible Maschinendaten in Public Clouds? Für die meisten Produktions- und IT-Leiter immer noch ein absolutes No-Go.</p>
-    </div>
-
-    <!-- NEU #7 -->
-    <div class="challenge-card">
-      <div class="icon">🌍</div>
-      <h3>Lieferketten- & Geopolitische Risiken</h3>
-      <p>Aktuelle Krisen zeigen: Unternehmen brauchen Echtzeit-Transparenz und KI-gestützte Resilienz über die gesamte Supply Chain.</p>
-    </div>
-
-    <!-- NEU #8 -->
-    <div class="challenge-card">
-      <div class="icon">⚡</div>
-      <h3>Energiekrise & Nachhaltigkeitsdruck</h3>
-      <p>Steigende Energiepreise und neue ESG-Vorgaben zwingen Werke, Produktion und Instandhaltung radikal energieeffizienter zu machen – mit KI oder gar nicht.</p>
-    </div>
-  </div>
-</section>
-
-<style>
-  .challenges-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 40px;
-    max-width: 1600px;
-    margin: 80px auto;
-    padding: 0 20px;
-  }
-
-  .challenge-card {
-    background: rgba(255, 0, 50, 0.05);
-    border: 1px solid rgba(255, 0, 50, 0.2);
-    border-radius: 24px;
-    padding: 40px 30px;
-    text-align: center;
-    transition: all 0.4s ease;
-    backdrop-filter: blur(8px);
-  }
-
-  .challenge-card:hover {
-    transform: translateY(-15px);
-    border-color: #ff3366;
-    box-shadow: 0 20px 40px rgba(255, 0, 50, 0.2);
-  }
-
-  .challenge-card .icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-  }
-
-  .challenge-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.6rem;
-    color: #ff3366;
-    margin: 15px 0;
-  }
-
-  @media (max-width: 768px) {
-    .challenges-grid { gap: 30px; }
-    .challenge-card h3 { font-size: 1.4rem; }
-  }
-</style>
-
-<section id="integration">
-        <h1>Viele Unternehmen scheitern an der Komplexität einzelner KI-Tools, fehlender Integration und hohen Betriebskosten.</h1>
-        <h2>Unsere Lösung: Vollständige Orchestrierung in allen wertschöpfenden Bereichen</h2>
-        
-        <div class="usecase-grid">
-          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 3h18v2H3V3zm2 4h14v2H5V7zm-2 4h18v10H3V11zm2 2v6h14v-6H5z"/></svg></div><h3>Beschaffung</h3><p>Demand Forecasting, intelligente Lieferantenbewertung & automatisierte Bestellvorschläge.</p></div>
-          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4V4zm0 8h7v8H4v-8zm9 0h7v8h-7v-8z"/></svg></div><h3>Produktion</h3><p>Computer Vision, Anomalie-Detection in Echtzeit & autonomes Rüsten.</p></div>
-          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M21 7l-2 2h-3l-2 2 3 3-2 2-3-3-3 3-2-2 3-3-2-2H5L3 7l2-2h3l2-2 3 3 3-3 2 2h3l2 2z"/></svg></div><h3>Instandhaltung</h3><p>Predictive Maintenance mit bis zu 94 % weniger Ausfallzeiten (live bei Automotive-Kunde).</p></div>
-          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h13v10H3V7zm13 0l5 3v7h-5V7zm-9 9a2 2 0 110-4 2 2 0 010 4zm8 0a2 2 0 110-4 2 2 0 010 4z"/></svg></div><h3>Logistik</h3><p>Dynamische Routenoptimierung, Lagerbestandsvorhersage & intelligente Verpackungsplanung.</p></div>
-          <div class="item"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 017-7zm0 9.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg></div><h3>After-Sales</h3><p>Personalisierte Kundenkommunikation, Ersatzteilvorhersage & KI-Chat-Assistenten.</p></div>
-          <div class="item"><div class="icon">📊</div><h3>Einkauf & Lieferanten-<br>management</h3><p>Risiko-Scoring, automatisierte Vertragsverlängerung, Preisvorhersage & ESG-Compliance in Echtzeit.</p></div>
-          <div class="item"><div class="icon">👥</div><h3>Personalwesen &<br>Shopfloor-Training</h3><p>KI-Schichtplanung, Skill-Gap-Analyse, AR-Einarbeitung & Burnout-Prävention durch Stimmungsanalyse.</p></div>
-          <div class="item"><div class="icon">✅</div><h3>Qualitätsmanagement &<br>Rückverfolgbarkeit</h3><p>Automatische Prüfplanung, 100 % digitale Chargenverfolgung & KI-Ursachenanalyse bei Reklamationen.</p></div>
+        <div class="challenge-card">
+            <div class="icon">
+                <img src="icons/alert-triangle-line.svg" alt="">
+            </div>
+            <h3>Komplexe Prozesse</h3>
+            <p>Wir analysieren, reduzieren und automatisieren Abläufe systematisch.</p>
         </div>
 
-        <p class="note">
-          <strong>Eine einzige gemanagte NEO-AI Toolchain</strong> – für alle 8 Bereiche.<br>
-          Keine Insellösungen. Kein Lizenzdschungel. Ein Vertrag. Ein Ansprechpartner.
-        </p>
-      </section>
+        <div class="challenge-card">
+            <div class="icon">
+                <img src="icons/tools-line.svg" alt="">
+            </div>
+            <h3>Fehlende Ressourcen</h3>
+            <p>Wir unterstützen mit Lösungen, die sofort entlasten.</p>
+        </div>
 
-      <style>
-        .usecase-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 40px;
-          max-width: 1600px;
-          margin: 80px auto;
-          padding: 0 20px;
-        }
-        .item {
-          background: rgba(0, 255, 255, 0.06);
-          border: 1px solid rgba(0, 255, 255, 0.15);
-          border-radius: 24px;
-          padding: 40px 30px;
-          text-align: center;
-          transition: all 0.4s ease;
-          backdrop-filter: blur(8px);
-        }
-        .item:hover {
-          transform: translateY(-15px);
-          border-color: #00ffff;
-          box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
-        }
-        .item .icon { font-size: 4rem; margin-bottom: 20px; }
-        .item .icon svg { width: 64px; height: 64px; fill: #00ffff; filter: drop-shadow(0 0 20px #00ffff); }
-        .item h3 { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #00ffff; margin: 15px 0; }
-        .note {
-          font-size: 1.4rem; text-align: center; max-width: 1000px; margin: 100px auto 0; padding: 40px;
-          background: rgba(0, 255, 255, 0.05); border-radius: 20px; border: 1px solid rgba(0, 255, 255, 0.2);
-        }
-        @media (max-width: 768px) { .usecase-grid { gap: 30px; } .item h3 { font-size: 1.4rem; } }
-      </style>
+        <div class="challenge-card">
+            <div class="icon">
+                <img src="icons/brain-line.svg" alt="">
+            </div>
+            <h3>KI erfolgreich nutzen</h3>
+            <p>Wir integrieren KI dort, wo sie messbaren Nutzen bringt.</p>
+        </div>
 
-<section id="usp">
-  <h2 class="usp-title">Warum NEO-AI die richtige Wahl ist</h2>
-  <div class="usp-grid">
-    <div class="usp-card">
-      <div class="usp-icon">🔓</div>
-      <h3>Hersteller-<br>unabhängig</h3>
-      <p>Wir binden die besten Tools ein – LangChain, CrewAI, OpenAI, Anthropic, Llama, Mistral … völlig frei wählbar.</p>
     </div>
-    <div class="usp-card">
-      <div class="usp-icon">⚙️</div>
-      <h3>Vollständig<br>gemanagt</h3>
-      <p>Sie müssen keine Data Scientists einstellen. Wir übernehmen Modell-Training, Deployment und 24/7 Monitoring.</p>
-    </div>
-    <div class="usp-card">
-      <div class="usp-icon">🚀</div>
-      <h3>Unbegrenzt<br>skalierbar</h3>
-      <p>Von einem Pilot-Standort bis zu 200+ Werken weltweit – die gleiche Toolchain, gleiche Qualität, gleiche Kostenstruktur.</p>
-    </div>
-    <div class="usp-card">
-      <div class="usp-icon">💰</div>
-      <h3>Schneller ROI<br>garantiert</h3>
-      <p>Durchschnittlich 1,8 Mio € Einsparung pro Standort bereits im ersten Jahr – bei einem Automotive-Kunden sogar nach 4 Monaten.</p>
-    </div>
-  </div>
 </section>
 
-<style>
-  #usp {
-    padding: 140px 20px 160px;
-    text-align: center;
-    background: linear-gradient(135deg, #0a1f3d 0%, #000 100%);
-    overflow: hidden;
-    position: relative;
-  }
+<!-- USE CASES -->
+<section id="usecases">
+    <h2>Use Cases</h2>
 
-  .usp-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    margin-bottom: 100px;
-    background: linear-gradient(90deg, #00ffff, #0099ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0;
-  }
+    <p class="integration-lead">
+        KI kann in nahezu jeder Abteilung sofortige Wirkung entfalten.
+    </p>
 
-  .usp-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 50px;
-    max-width: 1500px;
-    margin: 0 auto;
-    perspective: 1500px;
-  }
+    <div class="usecase-grid">
 
-  .usp-card {
-    background: rgba(0, 255, 255, 0.05);
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    border-radius: 28px;
-    padding: 50px 25px;
-    backdrop-filter: blur(12px);
-    opacity: 0;
-    transform: translateY(100px) scale(0.8) rotateX(20deg);
-  }
+        <div class="item">
+            <div class="icon"><img src="icons/money-dollar-box-line.svg"></div>
+            <h3>Finanzen</h3>
+            <p>Automatisierte Dokumente, Reports, Analysen.</p>
+        </div>
 
-  .usp-icon {
-    font-size: 5rem;
-    margin-bottom: 24px;
-    filter: drop-shadow(0 0 30px #00ffff);
-  }
+        <div class="item">
+            <div class="icon"><img src="icons/chat-ai-line.svg"></div>
+            <h3>Kundenservice</h3>
+            <p>Chatbots, automatisierte Antworten, Knowledge Base.</p>
+        </div>
 
-  .usp-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    margin: 20px 0;
-    color: #00ffff;
-    line-height: 1.2;
-  }
+        <div class="item">
+            <div class="icon"><img src="icons/task-line.svg"></div>
+            <h3>Prozesse</h3>
+            <p>Datenverarbeitung, Ticketing, Workflows.</p>
+        </div>
 
-  .usp-card p {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    opacity: 0.9;
-  }
+    </div>
+</section>
 
-  /* Hover-Effekt */
-  .usp-card:hover {
-    border-color: #00ffff;
-    box-shadow: 0 30px 60px rgba(0, 255, 255, 0.3);
-  }
+<!-- KONTAKT -->
+<section id="kontakt" class="contact-section">
+    <h2>Kontakt</h2>
 
-  @media (max-width: 768px) {
-    .usp-grid { gap: 40px; padding: 0 15px; }
-    .usp-card { padding: 40px 20px; }
-    .usp-card h3 { font-size: 1.7rem; }
-  }
-</style>
+    <div class="contact-wrapper">
+        <p class="contact-subtitle">Lassen Sie uns über Ihre Ziele sprechen.</p>
 
-<!-- GSAP Animation für USPs -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Titel einfliegen
-    gsap.to(".usp-title", {
-      scrollTrigger: {
-        trigger: "#usp",
-        start: "top 70%",
-        toggleActions: "play none none reverse"
-      },
-      opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: "power3.out"
-    });
-
-    // Karten nacheinander mit 3D-Stagger reinfliegen
-    gsap.to(".usp-card", {
-      scrollTrigger: {
-        trigger: ".usp-grid",
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-      },
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      rotateX: 0,
-      duration: 1.2,
-      ease: "back.out(1.4)",
-      stagger: {
-        amount: 0.8,
-        from: "start"
-      }
-    });
-
-    // Leichter Parallax-Hover auf jeder Karte
-    document.querySelectorAll(".usp-card").forEach(card => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateY = (x - centerX) / 10;
-        const rotateX = -(y - centerY) / 10;
-
-        gsap.to(card, { rotateY, rotateX, transformPerspective: 1000, ease: "power2.out", duration: 0.6 });
-      });
-
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, { rotateY: 0, rotateX: 0, ease: "power2.out", duration: 0.8 });
-      });
-    });
-  });
-</script>
-
-        <style>
-          #usp {
-            padding: 120px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #0a1f3d 0%, #000 100%);
-            color: white;
-          }
-
-          .usp-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: 80px;
-            background: linear-gradient(90deg, #00ffff, #00aaff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-          }
-
-      <section class="process-section">
-        <h2 class="process-title">Wir orchestrieren die gesamte KI-Tool-Chain</h2>
-        <div class="process-flow-edgy" id="edgyFlow"></div>
-      </section>
-
-      <section class="contact-section" id="contact">
-        <div class="contact-wrapper">
-          <h2>Kostenlose Erstberatung anfragen</h2>
-          <p class="contact-subtitle">In 48 h melden wir uns mit einem konkreten Umsetzungsvorschlag bei Ihnen.</p>
-          <form id="contact-form" action="https://formspree.io/f/xblrjwpj" method="POST">
+        <form>
             <div class="form-grid">
-              <input type="text" name="name" placeholder="Vor- & Nachname *" required>
-              <input type="text" name="company" placeholder="Unternehmen *" required>
-              <input type="tel" name="phone" placeholder="Telefonnummer *" required>
-              <input type="email" name="_replyto" placeholder="E-Mail-Adresse *" required>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="E-Mail">
             </div>
-            <textarea name="message" rows="5" placeholder="Ihr Anliegen / gewünschter Termin" required></textarea>
-            <div class="checkbox">
-              <label><input type="checkbox" name="datenschutz" required> Ich akzeptiere die <a href="/datenschutz.html" target="_blank">Datenschutzerklärung</a> *</label>
-            </div>
-            <button type="submit" class="submit-btn">Kostenlose Beratung anfragen →</button>
-            <div class="form-status" id="form-status"></div>
-          </form>
-        </div>
-      </section>
-    </main>
 
-    <footer class="footer">
-      <p>© 2025 NEO-AI · KickIT Consulting</p>
-    </footer>
-  </div>
+            <textarea rows="6" placeholder="Ihre Nachricht"></textarea>
 
-  <!-- ====================== DEIN URSPRÜNGLICHES JAVASCRIPT (komplett & unverändert) ====================== -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const terminal = document.getElementById('terminal-intro');
-      const hero = document.querySelector('.hero');
+            <button class="submit-btn" type="submit">Absenden</button>
+        </form>
+    </div>
+</section>
 
-      // Terminal ausblenden
-      setTimeout(() => {
-        if (terminal) { terminal.style.opacity = '0'; setTimeout(() => { terminal.style.display = 'none'; }, 1000); }
-      }, 6000);
-
-      // Morphing Blob
-      const blob = document.getElementById("morphing-blob");
-      if (blob && window.gsap) {
-        gsap.to(blob, { duration: 8 + Math.random()*4, repeat: -1, ease: "none", attr: { d: () => {
-          let path = ""; const n = 8; const r = 150 + Math.random()*50;
-          for (let i = 0; i < n; i++) { const a = (i/n)*Math.PI*2; const rr = r + Math.random()*60; const x = 50 + Math.cos(a)*(rr/3); const y = 50 + Math.sin(a)*(rr/3); path += `${i===0?"M":"L"} ${x} ${y} `; }
-          return path + "Z";
-        }}});
-      }
-
-      // Neural Canvas Hintergrund
-      const canvas = document.getElementById("neural-bg");
-      if (canvas) {
-        const ctx = canvas.getContext("2d");
-        canvas.width = innerWidth; canvas.height = innerHeight;
-        const particles = []; const N = 80;
-        class P { constructor() { this.x = Math.random()*canvas.width; this.y = Math.random()*canvas.height; this.size = Math.random()*3+1; this.speedX = Math.random()*0.5-0.25; this.speedY = Math.random()*0.5-0.25; }
-          update() { this.x += this.speedX; this.y += this.speedY; if (this.x > canvas.width || this.x < 0) this.speedX *= -1; if (this.y > canvas.height || this.y < 0) this.speedY *= -1; }
-          draw() { ctx.fillStyle = "rgba(0,150,255,0.8)"; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); }
-        }
-        for(let i=0;i<N;i++) particles.push(new P());
-        const connect = () => { 
-          for(let a=0;a<particles.length;a++) 
-            for(let b=a;b<particles.length;b++) { 
-              const d = Math.hypot(particles[a].x-particles[b].x, particles[a].y-particles[b].y); 
-              if(d<120){ 
-                ctx.strokeStyle = `rgba(0,150,255,${1-d/120})`; 
-                ctx.lineWidth = 0.5; 
-                ctx.beginPath(); 
-                ctx.moveTo(particles[a].x,particles[a].y); 
-                ctx.lineTo(particles[b].x,particles[b].y); 
-                ctx.stroke(); 
-              } 
-            } 
-        };
-        const anim = () => { 
-          ctx.clearRect(0,0,canvas.width,canvas.height); 
-          particles.forEach(p=>{p.update();p.draw();}); 
-          connect(); 
-          requestAnimationFrame(anim); 
-        };
-        anim();
-        window.addEventListener("resize",()=>{canvas.width=innerWidth;canvas.height=innerHeight;});
-      }
-
-      // GSAP ScrollTrigger Animationen
-      if (window.gsap) {
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.to("header.nav", { y: 0, opacity: 1, duration: 1, delay: 1 });
-        document.querySelectorAll("section").forEach(s => gsap.from(s, { scrollTrigger: { trigger: s, start: "top 80%" }, y: 50, opacity: 0, duration: 1 }));
-      }
-
-      // Formular-Feedback
-      const form = document.getElementById('contact-form');
-      const status = document.getElementById('form-status');
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          setTimeout(() => {
-            status.innerHTML = 'Vielen Dank! Wir melden uns innerhalb von 48 Stunden bei Ihnen.';
-            status.className = 'success';
-            form.reset();
-          }, 800);
-        });
-      }
-    });
-  </script>
 </body>
 </html>
