@@ -1,9 +1,26 @@
 /* ====================== MINIMAL DARK THEME 2025 ====================== */
 
-/* Global */
+/* Farb-Variablen */
+:root {
+  --bg-dark: #0d0d0d;
+  --bg-box: #141414;
+  --bg-box-hover: #181818;
+
+  --border: #222;
+  --border-focus: #333;
+
+  --text-main: #e5e5e5;
+  --text-sub: #ccc;
+  --text-muted: #999;
+
+  --icon-color: #999; /* Einheitliche Iconfarbe */
+}
+
+/* -------------------- GLOBAL -------------------- */
+
 body {
-  background: #0d0d0d;
-  color: #e5e5e5;
+  background: var(--bg-dark);
+  color: var(--text-main);
   font-family: system-ui, sans-serif;
   margin: 0;
   padding: 0;
@@ -23,7 +40,7 @@ header.nav {
   justify-content: space-between;
   align-items: center;
 
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid var(--border);
 }
 
 header.nav .logo img {
@@ -33,35 +50,35 @@ header.nav .logo img {
 header.nav .brand .name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #e5e5e5;
+  color: var(--text-main);
 }
 
 header.nav .brand .sub {
   font-size: 0.85rem;
-  color: #999;
+  color: var(--text-muted);
 }
 
 header.nav nav a {
-  color: #ccc;
+  color: var(--text-sub);
   margin: 0 16px;
   text-decoration: none;
   font-weight: 500;
 }
 
 header.nav nav a:hover {
-  color: #fff;
+  color: var(--text-main);
 }
 
-/* -------------------- NEWS TICKER (DEZENT) -------------------- */
+/* -------------------- NEWS TICKER -------------------- */
 
 .news-ticker {
   margin-top: 66px;
   background: #111;
-  color: #bbb;
+  color: var(--text-sub);
   padding: 10px 0;
   overflow: hidden;
   font-size: 14px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid var(--border);
 }
 
 .ticker-wrap {
@@ -78,12 +95,12 @@ header.nav nav a:hover {
 .news-ticker span {
   display: inline-block;
   padding-right: 50px;
-  color: #bbb;
+  color: var(--text-sub);
 }
 
 .news-ticker span::before {
   content: "• ";
-  color: #666;
+  color: var(--icon-color);
 }
 
 @keyframes ticker {
@@ -98,7 +115,7 @@ section h2, .process-title {
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 700;
   margin: 0 auto 50px;
-  color: #eee;
+  color: var(--text-main);
 }
 
 /* -------------------- CHALLENGES -------------------- */
@@ -113,8 +130,8 @@ section h2, .process-title {
 }
 
 .challenge-card {
-  background: #141414;
-  border: 1px solid #222;
+  background: var(--bg-box);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 32px 26px;
   text-align: center;
@@ -122,19 +139,19 @@ section h2, .process-title {
 }
 
 .challenge-card:hover {
-  background: #181818;
+  background: var(--bg-box-hover);
 }
 
 .challenge-card .icon {
   font-size: 3rem;
   margin-bottom: 16px;
-  color: #888;
+  color: var(--icon-color);
 }
 
 .challenge-card h3 {
   font-size: 1.3rem;
   margin: 12px 0;
-  color: #ddd;
+  color: var(--text-sub);
 }
 
 /* -------------------- USE CASE GRID -------------------- */
@@ -149,8 +166,8 @@ section h2, .process-title {
 }
 
 .item {
-  background: #141414;
-  border: 1px solid #222;
+  background: var(--bg-box);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 32px 26px;
   text-align: center;
@@ -158,13 +175,13 @@ section h2, .process-title {
 }
 
 .item:hover {
-  background: #181818;
+  background: var(--bg-box-hover);
 }
 
 .item .icon svg {
   width: 60px;
   height: 60px;
-  fill: #aaa;
+  fill: var(--icon-color);
   margin-bottom: 20px;
 }
 
@@ -174,10 +191,10 @@ section h2, .process-title {
   padding: 10px 22px;
 
   background: #1b1b1b;
-  border: 1px solid #333;
+  border: 1px solid var(--border-focus);
   border-radius: 20px;
 
-  color: #e5e5e5;
+  color: var(--text-main);
   text-decoration: none;
   font-size: 0.9rem;
 
@@ -195,7 +212,7 @@ section h2, .process-title {
   font-size: 1.2rem;
   max-width: 800px;
   margin: 0 auto 50px;
-  color: #ccc;
+  color: var(--text-sub);
 }
 
 /* -------------------- KONTAKTFORMULAR -------------------- */
@@ -206,7 +223,7 @@ section h2, .process-title {
 
 .contact-wrapper {
   background: #111;
-  border: 1px solid #222;
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 60px 40px;
   max-width: 900px;
@@ -216,7 +233,7 @@ section h2, .process-title {
 
 .contact-subtitle {
   font-size: 1.3rem;
-  color: #ccc;
+  color: var(--text-sub);
   margin-bottom: 40px;
 }
 
@@ -237,14 +254,14 @@ input, textarea {
   width: 100%;
   padding: 16px 20px;
   background: #0f0f0f;
-  border: 1px solid #333;
+  border: 1px solid var(--border-focus);
   border-radius: 12px;
-  color: #eee;
+  color: var(--text-main);
   font-size: 1rem;
 }
 
 input:focus, textarea:focus {
-  border-color: #555;
+  border-color: var(--text-sub);
   outline: none;
 }
 
@@ -252,17 +269,17 @@ input:focus, textarea:focus {
   text-align: left;
   margin: 20px 0;
   font-size: 0.9rem;
-  color: #bbb;
+  color: var(--text-muted);
 }
 
 .checkbox a {
-  color: #ccc;
+  color: var(--text-sub);
   text-decoration: underline;
 }
 
 .submit-btn {
-  background: #eee;
-  color: #111;
+  background: var(--text-main);
+  color: var(--bg-dark);
   font-weight: 600;
   padding: 16px 40px;
   border: none;
