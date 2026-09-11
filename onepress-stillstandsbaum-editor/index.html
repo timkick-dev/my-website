@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OnePress Stillstandsbaum Editor</title>
+<meta name="description" content="Browserbasierter Editor für anlagenspezifische Stillstandsbäume">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand" aria-label="OnePress"><span>ONE</span>PRESS</div>
+  <div><div class="title">Stillstandsbaum Editor</div><div class="subtitle">Web v1.0 · lokale Verarbeitung im Browser</div></div>
+  <div class="top-actions">
+    <button id="newProject">Neues Projekt</button>
+    <button id="openProject">Projekt öffnen</button>
+    <button id="saveProject">Projekt speichern</button>
+    <button id="importExcel">Excel importieren</button>
+    <button class="primary" id="exportCsv">CSV exportieren</button>
+  </div>
+</header>
+<main class="layout">
+  <aside class="panel assets">
+    <div class="panel-head"><b>Anlagen</b><span class="spacer"></span><span class="badge" id="assetCount">0</span></div>
+    <div id="assetList" class="asset-list"></div>
+    <div class="asset-actions">
+      <button id="addAsset">+ Anlage</button><button id="dupAsset">Duplizieren</button>
+      <button id="renameAsset">Umbenennen</button><button class="danger" id="deleteAsset">Löschen</button>
+    </div>
+  </aside>
+  <section class="panel tree-panel">
+    <div class="panel-head"><b id="treeTitle">Stillstandsbaum</b><span class="spacer"></span><span class="badge" id="rowCount">0 Zeilen</span></div>
+    <div class="toolbar">
+      <input id="search" placeholder="Suchen nach Nummer oder Beschreibung…">
+      <button id="expandAll">Alles aufklappen</button><button id="collapseAll">Alles zuklappen</button>
+      <button id="addChild">+ Unterebene</button><button id="addMany">Mehrere…</button>
+      <button id="copyTree">Teilbaum kopieren</button><button class="danger" id="deleteNode">Knoten löschen</button>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Nummer</th><th>Ebene</th><th>Beschreibung</th><th>Typ</th></tr></thead><tbody id="treeBody"></tbody></table></div>
+  </section>
+  <aside class="panel details">
+    <div class="panel-head"><b>Eigenschaften</b></div><div id="details" class="detail-body">Wähle einen Knoten aus.</div>
+  </aside>
+</main>
+<footer><span id="validity" class="good">✓ Bereit</span><span id="nodeCount">0 Knoten</span><span id="csvCount">0 CSV-Zeilen</span><span id="saveState">Auto-Sicherung aktiv</span><span class="spacer"></span><span>Daten bleiben lokal im Browser.</span></footer>
+<input hidden type="file" id="projectFile" accept=".json,.onepress-tree">
+<input hidden type="file" id="excelFile" accept=".xlsx,.xls,.xlsm">
+<div id="modal" class="modal-bg"><div class="modal"><div class="modal-head"><h3 id="modalTitle"></h3></div><div id="modalBody" class="modal-body"></div><div id="modalFoot" class="modal-foot"></div></div></div>
+<script src="master.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
