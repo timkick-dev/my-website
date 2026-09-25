@@ -1,0 +1,120 @@
+{
+  "updated": "2026-09-25T06:52:57.296041+00:00",
+  "quotes": {
+    "DAX": {
+      "value": 25266.529296875,
+      "changePct": -0.5670916369509782,
+      "currency": "EUR",
+      "marketTime": 1790265600
+    },
+    "MDAX": {
+      "value": 30782.599609375,
+      "changePct": -1.387663762193514,
+      "currency": "EUR",
+      "marketTime": 1790265600
+    },
+    "EURO STOXX 50": {
+      "value": 6272.5,
+      "changePct": -0.43366040586942933,
+      "currency": "EUR",
+      "marketTime": 1790265600
+    },
+    "S&P 500": {
+      "value": 7704.1298828125,
+      "changePct": -0.0246547495496241,
+      "currency": "USD",
+      "marketTime": 1790282212
+    },
+    "NASDAQ": {
+      "value": 26939.369140625,
+      "changePct": 0.012362909473329076,
+      "currency": "USD",
+      "marketTime": 1790284559
+    },
+    "Gold": {
+      "value": 4312.60009765625,
+      "changePct": 0.33969515254188565,
+      "currency": "USD",
+      "marketTime": 1790318575
+    },
+    "Brent": {
+      "value": 105.62000274658203,
+      "changePct": -0.9193205830832829,
+      "currency": "USD",
+      "marketTime": 1790318343
+    },
+    "WTI": {
+      "value": 93.0,
+      "changePct": -1.701723496422225,
+      "currency": "USD",
+      "marketTime": 1790318570
+    },
+    "Bitcoin": {
+      "value": 84023.8671875,
+      "changePct": -0.42560775481956803,
+      "currency": "USD",
+      "marketTime": 1790319123
+    },
+    "Ethereum": {
+      "value": 2674.070068359375,
+      "changePct": -0.39564414052546404,
+      "currency": "USD",
+      "marketTime": 1790319120
+    },
+    "Solana": {
+      "value": 116.27999877929688,
+      "changePct": 1.134720928910049,
+      "currency": "USD",
+      "marketTime": 1790319121
+    },
+    "XRP": {
+      "value": 1.5295000076293945,
+      "changePct": 1.9288212892958567,
+      "currency": "USD",
+      "marketTime": 1790319121
+    },
+    "Dogecoin": {
+      "value": 0.09494999796152115,
+      "changePct": 2.4382344929011257,
+      "currency": "USD",
+      "marketTime": 1790319107
+    },
+    "EUR/USD": {
+      "value": 1.1386927366256714,
+      "changePct": 0.044408103347715056,
+      "currency": "USD",
+      "marketTime": 1790319129
+    },
+    "SAP": {
+      "value": 186.4600067138672,
+      "changePct": 2.2707323515440025,
+      "currency": "EUR",
+      "marketTime": 1790264379
+    },
+    "Amazon": {
+      "value": 249.3800048828125,
+      "changePct": 0.04412910035951345,
+      "currency": "USD",
+      "marketTime": 1790280001
+    },
+    "Nvidia": {
+      "value": 224.5800018310547,
+      "changePct": -0.41239532545555013,
+      "currency": "USD",
+      "marketTime": 1790280001
+    },
+    "ASML": {
+      "value": 1515.800048828125,
+      "changePct": 0.5572525061705358,
+      "currency": "EUR",
+      "marketTime": 1790264367
+    },
+    "Allianz": {
+      "value": 413.1000061035156,
+      "changePct": -3.9748967034632154,
+      "currency": "EUR",
+      "marketTime": 1790264395
+    }
+  },
+  "source": "Yahoo Finance chart feed (indicative)"
+}
