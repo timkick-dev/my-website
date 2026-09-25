@@ -3,6 +3,10 @@ on:
   schedule:
     - cron: '15 5 * * 1-5'
     - cron: '15 6 * * 1-5'
+  push:
+    paths:
+      - 'scripts/update_markets.py'
+      - '.github/workflows/morning-markets.yml'
   workflow_dispatch:
 permissions:
   contents: write
@@ -18,7 +22,7 @@ jobs:
         id: gate
         run: |
           HOUR=$(TZ=Europe/Berlin date +%H)
-          if [ "$HOUR" = "07" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; else echo "run=false" >> "$GITHUB_OUTPUT"; fi
+          if [ "$HOUR" = "07" ] || [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; else echo "run=false" >> "$GITHUB_OUTPUT"; fi
       - name: Fetch market data
         if: steps.gate.outputs.run == 'true'
         run: python scripts/update_markets.py
