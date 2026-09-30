@@ -1,119 +1,119 @@
 {
-  "updated": "2026-09-25T06:52:57.296041+00:00",
+  "updated": "2026-09-30T05:44:13.796994+00:00",
   "quotes": {
     "DAX": {
-      "value": 25266.529296875,
-      "changePct": -0.5670916369509782,
+      "value": 25399.2109375,
+      "changePct": 0.09770081720619217,
       "currency": "EUR",
-      "marketTime": 1790265600
+      "marketTime": 1790697600
     },
     "MDAX": {
-      "value": 30782.599609375,
-      "changePct": -1.387663762193514,
+      "value": 30883.189453125,
+      "changePct": -0.04013644241043224,
       "currency": "EUR",
-      "marketTime": 1790265600
+      "marketTime": 1790697600
     },
     "EURO STOXX 50": {
-      "value": 6272.5,
-      "changePct": -0.43366040586942933,
+      "value": 6320.259765625,
+      "changePct": 0.3012083436361612,
       "currency": "EUR",
-      "marketTime": 1790265600
+      "marketTime": 1790697600
     },
     "S&P 500": {
-      "value": 7704.1298828125,
-      "changePct": -0.0246547495496241,
+      "value": 7670.83984375,
+      "changePct": -0.16723862824035152,
       "currency": "USD",
-      "marketTime": 1790282212
+      "marketTime": 1790714323
     },
     "NASDAQ": {
-      "value": 26939.369140625,
-      "changePct": 0.012362909473329076,
+      "value": 26797.5390625,
+      "changePct": -0.08516581846754745,
       "currency": "USD",
-      "marketTime": 1790284559
+      "marketTime": 1790716559
     },
     "Gold": {
-      "value": 4312.60009765625,
-      "changePct": 0.33969515254188565,
+      "value": 4210.89990234375,
+      "changePct": 0.7464580130948306,
       "currency": "USD",
-      "marketTime": 1790318575
+      "marketTime": 1790746445
     },
     "Brent": {
-      "value": 105.62000274658203,
-      "changePct": -0.9193205830832829,
+      "value": 96.30000305175781,
+      "changePct": -6.131195546021928,
       "currency": "USD",
-      "marketTime": 1790318343
+      "marketTime": 1790746369
     },
     "WTI": {
-      "value": 93.0,
-      "changePct": -1.701723496422225,
+      "value": 89.62999725341797,
+      "changePct": 0.2797046405038195,
       "currency": "USD",
-      "marketTime": 1790318570
+      "marketTime": 1790746450
     },
     "Bitcoin": {
-      "value": 84023.8671875,
-      "changePct": -0.42560775481956803,
+      "value": 83433.078125,
+      "changePct": -0.08326835594770765,
       "currency": "USD",
-      "marketTime": 1790319123
+      "marketTime": 1790747048
     },
     "Ethereum": {
-      "value": 2674.070068359375,
-      "changePct": -0.39564414052546404,
+      "value": 2676.719970703125,
+      "changePct": -0.4444106655290825,
       "currency": "USD",
-      "marketTime": 1790319120
+      "marketTime": 1790747047
     },
     "Solana": {
-      "value": 116.27999877929688,
-      "changePct": 1.134720928910049,
+      "value": 119.58000183105469,
+      "changePct": 0.6254555035615894,
       "currency": "USD",
-      "marketTime": 1790319121
+      "marketTime": 1790747048
     },
     "XRP": {
-      "value": 1.5295000076293945,
-      "changePct": 1.9288212892958567,
+      "value": 1.5037000179290771,
+      "changePct": 0.49596476906950127,
       "currency": "USD",
-      "marketTime": 1790319121
+      "marketTime": 1790747049
     },
     "Dogecoin": {
-      "value": 0.09494999796152115,
-      "changePct": 2.4382344929011257,
+      "value": 0.09399999678134918,
+      "changePct": 0.13315408023166775,
       "currency": "USD",
-      "marketTime": 1790319107
+      "marketTime": 1790747047
     },
     "EUR/USD": {
-      "value": 1.1386927366256714,
-      "changePct": 0.044408103347715056,
+      "value": 1.1340440511703491,
+      "changePct": -0.283508618045647,
       "currency": "USD",
-      "marketTime": 1790319129
+      "marketTime": 1790747037
     },
     "SAP": {
-      "value": 186.4600067138672,
-      "changePct": 2.2707323515440025,
+      "value": 184.02000427246094,
+      "changePct": -1.0219416497400435,
       "currency": "EUR",
-      "marketTime": 1790264379
+      "marketTime": 1790696112
     },
     "Amazon": {
-      "value": 249.3800048828125,
-      "changePct": 0.04412910035951345,
+      "value": 246.6699981689453,
+      "changePct": 0.21125504178547416,
       "currency": "USD",
-      "marketTime": 1790280001
+      "marketTime": 1790712001
     },
     "Nvidia": {
-      "value": 224.5800018310547,
-      "changePct": -0.41239532545555013,
+      "value": 227.2100067138672,
+      "changePct": -0.7209621131189281,
       "currency": "USD",
-      "marketTime": 1790280001
+      "marketTime": 1790712000
     },
     "ASML": {
-      "value": 1515.800048828125,
-      "changePct": 0.5572525061705358,
+      "value": 1537.0,
+      "changePct": 0.9457523082200936,
       "currency": "EUR",
-      "marketTime": 1790264367
+      "marketTime": 1790696254
     },
     "Allianz": {
-      "value": 413.1000061035156,
-      "changePct": -3.9748967034632154,
+      "value": 425.5,
+      "changePct": 0.47225501770955525,
       "currency": "EUR",
-      "marketTime": 1790264395
+      "marketTime": 1790696114
     }
   },
   "source": "Yahoo Finance chart feed (indicative)"
