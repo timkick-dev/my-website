@@ -16,10 +16,24 @@ SYMBOLS = {
     "ASML": "ASML.AS", "Allianz": "ALV.DE",
 }
 def quote(symbol):
-    url = "https://query1.finance.yahoo.com/v8/finance/chart/" + urllib.parse.quote(symbol, safe="") + "?range=5d&interval=1d"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=15) as response:
-        result = json.load(response)["chart"]["result"][0]
+    path = urllib.parse.quote(symbol, safe="")
+    last_error = None
+    # Yahoo exposes two equivalent chart hosts. Retry the second host when the
+    # first one is throttled/unavailable; scheduled GitHub runners can hit 429s.
+    for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
+        try:
+            url = f"https://{host}/v8/finance/chart/{path}?range=10d&interval=1d"
+            req = urllib.request.Request(url, headers={
+                "User-Agent": "Mozilla/5.0 (compatible; KicksteinsBoersenbrief/1.0)",
+                "Accept": "application/json",
+            })
+            with urllib.request.urlopen(req, timeout=20) as response:
+                result = json.load(response)["chart"]["result"][0]
+            break
+        except Exception as error:
+            last_error = error
+    else:
+        raise last_error
     values = [x for x in result["indicators"]["quote"][0]["close"] if x is not None]
     if not values:
         raise ValueError("No closing price")
@@ -43,4 +57,7 @@ for name, symbol in SYMBOLS.items():
         print(f"{name}: {error}")
 if not any("value" in item for item in data["quotes"].values()):
     raise RuntimeError("No market quotes retrieved; preserve existing published data")
+# Do not silently replace a complete publication with a mostly empty response.
+if len(data["quotes"]) < max(8, len(SYMBOLS) // 2):
+    raise RuntimeError(f"Only {len(data['quotes'])}/{len(SYMBOLS)} quotes retrieved; preserve existing published data")
 OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
