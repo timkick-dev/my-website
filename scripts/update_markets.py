@@ -3,6 +3,7 @@ import json
 import pathlib
 import urllib.parse
 import urllib.request
+import time
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "boersenbrief" / "market.json"
@@ -12,15 +13,16 @@ SYMBOLS = {
     "Brent": "BZ=F", "WTI": "CL=F", "Bitcoin": "BTC-USD",
     "Ethereum": "ETH-USD", "Solana": "SOL-USD", "XRP": "XRP-USD",
     "Dogecoin": "DOGE-USD", "EUR/USD": "EURUSD=X",
-    "SAP": "SAP.DE", "Amazon": "AMZN", "Nvidia": "NVDA",
-    "ASML": "ASML.AS", "Allianz": "ALV.DE",
+    "SAP": "SAP.DE", "Amazon": "AMZN", "Microsoft": "MSFT", "Nvidia": "NVDA",
+    "Meta": "META", "ASML": "ASML.AS", "Allianz": "ALV.DE",
 }
 def quote(symbol):
     path = urllib.parse.quote(symbol, safe="")
     last_error = None
     # Yahoo exposes two equivalent chart hosts. Retry the second host when the
     # first one is throttled/unavailable; scheduled GitHub runners can hit 429s.
-    for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
+    for attempt in range(3):
+        host = ("query1.finance.yahoo.com", "query2.finance.yahoo.com")[attempt % 2]
         try:
             url = f"https://{host}/v8/finance/chart/{path}?range=10d&interval=1d"
             req = urllib.request.Request(url, headers={
@@ -32,6 +34,7 @@ def quote(symbol):
             break
         except Exception as error:
             last_error = error
+            time.sleep(2 ** attempt)
     else:
         raise last_error
     values = [x for x in result["indicators"]["quote"][0]["close"] if x is not None]
