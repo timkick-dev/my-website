@@ -25,7 +25,28 @@ jobs:
           if [ "$HOUR" = "07" ] || [ "${{ github.event_name }}" != "schedule" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; else echo "run=false" >> "$GITHUB_OUTPUT"; fi
       - name: Fetch market data
         if: steps.gate.outputs.run == 'true'
-        run: python scripts/update_markets.py
+        run: |
+          for attempt in 1 2 3; do
+            python scripts/update_markets.py && break
+            if [ "$attempt" = "3" ]; then exit 1; fi
+            echo "Market feed failed (attempt $attempt); retrying in 30s..."
+            sleep 30
+          done
+      - name: Validate market publication
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python - <<'PY'
+          import datetime, json, pathlib
+          p = pathlib.Path("boersenbrief/market.json")
+          data = json.loads(p.read_text())
+          updated = datetime.datetime.fromisoformat(data["updated"])
+          age = datetime.datetime.now(datetime.timezone.utc) - updated
+          if age.total_seconds() > 3600:
+              raise SystemExit("market.json is stale after update")
+          if len(data.get("quotes", {})) < 10:
+              raise SystemExit("market.json contains too few quotes")
+          print("market.json validated:", data["updated"], len(data["quotes"]), "quotes")
+          PY
       - name: Commit update
         if: steps.gate.outputs.run == 'true'
         run: |
