@@ -33,7 +33,7 @@ h2{font-size:21px;margin:0 0 12px}.muted,small{color:#a5b7cb}.card{background:#1
 <p><a href="archive/2026-10-06.html">Vollständige Tagesausgabe im Archiv</a></p></section>
 <footer class="muted">Kursquelle: <a href="https://finance.yahoo.com/">Yahoo Finance Chart Feed</a> (indikativ). Aktualisierung werktags gegen 07:15 Uhr Europe/Berlin über GitHub Actions. <a href="https://github.com/timkick-dev/my-website/actions/workflows/morning-markets.yml">Status der Aktualisierung</a> · <a href="https://github.com/timkick-dev/my-website/tree/main/boersenbrief/archive">Archiv</a></footer>
 </main><script>
-const groups={markets:["DAX","MDAX","EURO STOXX 50","S&P 500","NASDAQ","Gold","Brent","WTI","Bitcoin","EUR/USD"],stocks:["SAP","Amazon","Nvidia","ASML","Allianz"],crypto:["Bitcoin","Ethereum","Solana","XRP","Dogecoin"]};
+const groups={markets:["DAX","MDAX","EURO STOXX 50","S&P 500","NASDAQ","Gold","Brent","WTI","Bitcoin","EUR/USD"],stocks:["SAP","Amazon","Microsoft","Nvidia","Meta","ASML","Allianz"],crypto:["Bitcoin","Ethereum","Solana","XRP","Dogecoin"]};
 const holdings={"Bitcoin":0.10605096,"Ethereum":7.64935596,"Solana":83.20111221,"XRP":6039.761923,"Dogecoin":6062.70205428};
 const $=id=>document.getElementById(id);
 function number(n,d=2){return new Intl.NumberFormat("de-DE",{maximumFractionDigits:d,minimumFractionDigits:d}).format(n)}
